@@ -347,13 +347,13 @@ Cette première partie de notre stage a fait l'objet d'une soumission d'un abstr
 \subsubsection{Pushing object experiment}
 La seconde partie de notre stage a consisté à mener une expérience en se servant de l'algorithme de clusterisation d'effets décrit ci-dessus. Une première expérimentation a eu lieu en simulation puis à l'aide du robot réel. Cette expérience peut être divisée en 3 étapes : \circled{1} génération du babbling sensorimoteur et enregistrement des effets pour les différents objets, \circled{2} réalisation de la clusterization des effets et \circled{3} test de l'apprentissage.  Voir figure \ref{fig7} pour la mise en place initiale.
 
-Afin d'obtenir des jeux de données contenant les différents effets à apprendre, le babillage sensorimoteur a été effectué à l'aide de l'algorithme génétique Novelty Search\cite{5949955}. Cette approche est utilisée par Maestre et al. dans \cite{Maestre2015}. Pour cela, le calcul des trajectoires est effectué dans une première étape. Pour chaque trajectoire, on regarde si elle intersecte avec le cube. Si c'est le cas, cette trajectoire est gardée et jouée par le robot en simulation. La figure x\ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet considéré.
+Afin d'obtenir des jeux de données contenant les différents effets à apprendre, le babillage sensorimoteur a été effectué à l'aide de l'algorithme génétique Novelty Search\cite{5949955}. Cette approche est utilisée par Maestre et al. dans \cite{Maestre2015}. Pour cela, le calcul des trajectoires est effectué dans une première étape. Pour chaque trajectoire, on regarde si elle intersecte avec le cube. Si c'est le cas, cette trajectoire est gardée et jouée par le robot en simulation. La figure \ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet considéré.
 
 
 \begin{figure}[ht]
   \begin{center}
   \includegraphics[width=0.7\textwidth]{figures/ns_trajectory.png}
-  \caption{}
+  \caption{Le point rouge correspond au point de départ de l'effecteur du robot. Le tracé en bleu correspond à la trajectoire de cet effecteur vers l'objet. L'étoile verte indique la position de l'objet à la fin de l'exécution de la trajectoire de l'effecteur.}
   \label{fig:ns_traj}
   \end{center}
 \end{figure}
