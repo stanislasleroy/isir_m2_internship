@@ -46,11 +46,11 @@ Université Claude Bernard Lyon 1, France}
 % \addcontentsline{toc}{chapter}{Acknowledgement}
 
 Mon stage de 6 mois au sein de l'équipe AMAC à l'ISIR fût une formidable expérience. Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leur support et les nombreux conseils avisés qu'ils m'ont donnés.
-Béneficier de leur expérience et savoir. Expérience de travailler dans le monde de la recherche.
-
-Reprendre des études en 2016 après avoir travaillé quelques années a été un véritable défi pour moi. En effet, cela supposait de quitter la ville où je vivais, de quitter mes amis et mon confort matériel ainsi que de revenir sur les bancs de l'université et de beaucoup travailler. J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master 2.
+Bénéficier de leur expérience et savoir a été un véritable atout pour mener à bien ce stage. Par ailleurs, ces 6 mois au sein de l'ISIR m'ont donné l'opportunité de découvrir davantage le monde de la recherche.
 
 L'ISIR est l'un des meilleurs laboratoires de robotique en France et avoir la possibilité d'y faire un stage a été une extraordinaire opportunité de travailler dans un domaine passionnant et relativement jeune. D'autant plus que la robotique développementale et les robots auront un impact massif sur la vie des gens dans quelques décennies.
+
+Reprendre des études en 2016 après avoir travaillé quelques années a été un véritable défi pour moi. En effet, cela supposait de quitter la ville où je vivais, de quitter mes amis et mon confort matériel ainsi que de revenir sur les bancs de l'université et de beaucoup travailler. J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master 2.
 
 % I am very glad to have the opportunity to pursue my works in PhD in the current months.
 
@@ -76,6 +76,9 @@ Détails du projet Dream.
 
 Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (3 chercheurs, 2 post-doctorants, 3 doctorants et 4 stagiaires).
 Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
+
+Par exemple, plusieurs personnes travaillent sur la perception interactive. L'idée principale de la discipline est que pour segmenter des éléments (en l'occurrence des objects manipulables) dans une scène quelconque on ne peut pas se baser sur un a priori et pour compenser cela on va interagir avec l'environnement afin d'acquérir cette information. Le but d'un babillage est donc de produire une base de données. Une partie consiste à segmenter ce qui bouge et une autre doit pouvoir segmenter chaque objet. La segmentation de Leni me permet d'initialiser des hypothèses d'objets (ensemble de supervoxels) avec lesquels le robot interagis afin de valider ou non l'appartenance des supervoxels à un unique objet. La base de données qui est construite contient pour chaque objet les exemples de supervoxels qui lui ont été attribué.
+
 Carlos : Apprentissage d'affordance
 Pierre : reconnaissance de formes ?
 
@@ -361,7 +364,7 @@ Afin d'obtenir des jeux de données contenant les différents effets à apprendr
   \end{center}
 \end{figure}
 
-Durant la première étape, différents objets sont placés successivement sur la table : une boîte de forme cubique, un cylindre et un cône. Ces objets ont différentes propriétés ; certains peuvent être poussés à partir de n'importe quelle face et générer un comportement identique (boîte), tandis que d'autres nécessiteront d'être poussés depuis une face particulière (cylindre et cône) afin de garder une trajectoire cohérente. Le babillage réalisé par le robot sur ces différents objets produit des jeux de données d'effets.
+Durant la première étape, différents objets sont placés successivement sur la table : une boîte de forme cubique, un cylindre et un cône. Ces objets ont différentes propriétés : certains peuvent être poussés à partir de n'importe quelle face et générer un comportement identique (boîte), tandis que d'autres nécessiteront d'être poussés depuis une face particulière (cylindre et cône) afin de garder une trajectoire cohérente. Le babillage réalisé par le robot sur ces différents objets permet de produire des jeux de données d'effets.
 La seconde étape implique l'algorithme que nous avons présenté ci-dessus et tente de clusteriser les effets des jeux de données. Il en résulte une variété de paramètres qui peuvent être exploités durant la troisième étape.
 Les meilleurs paramètres trouvés dans l'étape précédente sont utilisés pour pousser les différents objects vers la zone cible.
 
