@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: LEROY_M2_ISIR_2017_internship_thesis.aux
+The style file: unsrt.bst
+Database file #1: ./LEROY_M2_ISIR_2017_internship_thesis.bib.bib
+You've used 17 entries,
+            1791 wiz_defined-function locations,
+            570 strings with 7152 characters,
+and the built_in function-call counts, 4926 in all, are:
+= -- 455
+> -- 207
+< -- 6
++ -- 75
+- -- 58
+* -- 352
+:= -- 731
+add.period$ -- 53
+call.type$ -- 17
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 225
+empty$ -- 467
+format.name$ -- 58
+if$ -- 1128
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 18
+newline$ -- 89
+num.names$ -- 17
+pop$ -- 45
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 134
+stack$ -- 0
+substring$ -- 394
+swap$ -- 77
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 50
+width$ -- 19
+write$ -- 194
