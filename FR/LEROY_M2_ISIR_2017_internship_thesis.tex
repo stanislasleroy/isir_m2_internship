@@ -14,6 +14,7 @@
 % \usepackage{amssymb}
 % \usepackage{mathptmx}
 \usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning,mindmap,trees,automata}
 \providecommand{\keywords}[1]{\textbf{\textit{Mots-clés --}} #1}
 
 \newcommand{\textoverline}[1]{$\overline{\mbox{#1}}$}
@@ -48,7 +49,11 @@ Université Claude Bernard Lyon 1, France}
 Mon stage de 6 mois au sein de l'équipe AMAC à l'ISIR fût une formidable expérience. Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leur support et les nombreux conseils avisés qu'ils m'ont donnés.
 Bénéficier de leur expérience et savoir a été un véritable atout pour mener à bien ce stage. Par ailleurs, ces 6 mois au sein de l'ISIR m'ont donné l'opportunité de découvrir davantage le monde de la recherche.
 
-L'ISIR est l'un des meilleurs laboratoires de robotique en France et avoir la possibilité d'y faire un stage a été une extraordinaire opportunité de travailler dans un domaine passionnant et relativement jeune. D'autant plus que la robotique développementale et les robots auront un impact massif sur la vie des gens dans quelques décennies.
+L'ISIR est un excellent laboratoires de robotique en France et avoir la possibilité d'y faire un stage a été une extraordinaire opportunité. Mon stage de 6 mois au sein de l'équipe AMAC fût une formidable expérience, notamment parce que j'ai pu travailler sur un domaine passionnant et relativement jeune, la robotique développementale.
+
+Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leurs nombreux conseils avisés et pour toute l'aide dont ils ont fait preuve à mon égard. Avoir pu béneficié de leur expérience et de leur savoir est un atout non négligeable pour mes travaux futurs. Par ailleurs, cette immersion dans un laboratoire de recherche m'a permis de mieux cerner différents aspects de la recherche que je m'attendais pas à rencontrer.
+
+Reprendre des études en 2016 après avoir travaillé quelques années a été un véritable défi pour moi. En effet, cela supposait de quitter la ville où je vivais, de quitter mes amis et mon confort matériel ainsi que de revenir sur les bancs de l'université et de beaucoup travailler. J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master 2.
 
 Reprendre des études en 2016 après avoir travaillé quelques années a été un véritable défi pour moi. En effet, cela supposait de quitter la ville où je vivais, de quitter mes amis et mon confort matériel ainsi que de revenir sur les bancs de l'université et de beaucoup travailler. J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master 2.
 
@@ -70,9 +75,10 @@ Les travaux de recherche à l'ISIR sont principalement centrés sur la modélisa
 \item SYROCCO (SYstèmes RObotiques COmplexes)
 \end{itemize}
 
-J'ai réalisé mon stage de fin d'études au sein de l'équipe AMAC, encadré par Stéphane Doncieux. L'équipe est composée de 11 membres permanents et 13 membres non-permanents. Plusieurs membres sont spécialisés en neurosciences tandis que d'autres sont experts en robotique. Mon stage était orienté sur les affordances et a été financé par le projet DREAM\footnote{http://www.robotsthatdream.eu}. DREAM (Deferred Restructuring of Experience in Autonomous Machines) est is \textit{a robotics project that incorporates sleep and dream-like processes within cognitive architecture} et financé par le programme de recherche et d'innovation H2020 de l'Union Européenne.
+J'ai réalisé mon stage de fin d'études au sein de l'équipe AMAC, dirigée par Stéphane Doncieux. L'équipe est composée de 13 membres permanents et 6 membres non-permanents. Plusieurs membres sont spécialisés en neurosciences tandis que d'autres sont experts en robotique.
 
-Détails du projet Dream.
+\subsection{Le projet DREAM}
+Mon stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}.
 
 Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (3 chercheurs, 2 post-doctorants, 3 doctorants et 4 stagiaires).
 Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
@@ -82,33 +88,32 @@ Par exemple, plusieurs personnes travaillent sur la perception interactive. L'id
 Carlos : Apprentissage d'affordance
 Pierre : reconnaissance de formes ?
 
+DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit Restructuration différée de l'expérience dans les machines autonomes est un projet est financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet de robotique incorpore des processus de sommeile et l'équivalent de rêves au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
+
+% Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{https://en.wikipedia.org/wiki/Meka_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{https://www.thymio.org/en:thymio}, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com/} ainsi que le robot baxter de Rethink Robotics. Les 4 derniers robots sont présents au sein de l'ISIR.
+
+Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka, PR2 de Willow Garage, plusieurs Thymio-2, le bras robotique CrustCrawlerainsi que le robot baxter de Rethink Robotics. Les 4 derniers robots sont présents au sein de l'ISIR.
+
+Accumuler de la connaissance nécessite des processus de consolidation afin d'éviter d'être submergé par les informations. Le sommeil crucial pour la restructuration des représentations, maintenir l'intégratione et la cohérence de la connaissance, amélioration de l'apprentissage et la formation d'abstraction.
+
+Permettre aux robots d'acquérir une représentation ouverte du monde. Alterner périodes d'expériences et de sommeil.
+
+Jusqu'à présent, le rôle du sommeil a été négligé dans l'IA et la robotique.
+
+Selon DREAM, le cerveau de compose de 3 sous-systèmes : modèles, politique, valeurs.
+
+Alternance entre interaction active et introspection passive.
+
+Détails du projet Dream.
+
+Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (3 chercheurs, 2 post-doctorants, 3 doctorants et 4 stagiaires).
+Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
+Carlos : Apprentissage d'affordance
+Pierre : reconnaissance de formes ?
+
 Au terme de ce projet, les différents travaux de recherche des différents membres ont vocation à s'imbriquer les uns avec les autres dans le but de fournir un système global, allant de la détection et le suivi d'objet, à l'apprentissage d'affordances en passant par l'apprentissage de lancers de balle.
 
 La Coruna : travaux sur les motivations extrinsèques.
-
-\subsection{Environnement}
-
-L'environnement de travail durant notre stage a consisté en différents modules reliés entre eux : ROS,  le simulateur  Gazebo, le framework Moveit et le robot Baxter. ROS is \textit{a flexible framework for writing robot software. It is a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms\footnote{http://www.ros.org/about-ros/}}.
-
-Gazebo est un simulateur\footnote{http://gazebosim.org}. La figure \ref{fig7} donne un aperçu d'une simulation lancée avec Gazebo.
-
-Moveit
-
-Quant au robot Baxter\footnote{http://www.rethinkrobotics.com/baxter/tech-specs/} (voir figure \ref{fig:baxter}), c'est un robot développé par Rethink Robotic et utilisé à la fois à des fin industrielles et de recherche. Ce robot antropormorphique à 2 bras dispose de 2 fois 7 degrés de liberté et de multiples  senseurs\footnote{http://sdk.rethinkrobotics.com/wiki/Hardware\_Specifications}.
-
-\begin{figure}
-	\centering
-	\includegraphics[angle=-90,width=.5\textwidth]{figures/baxter}
-	\label{fig:baxter}
-	\caption{Baxter robot}
-\end{figure}
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=\textwidth]{figures/gazebo}
-% 	\label{fig:gazebo}
-% 	\caption{Gazebo simulator}
-% \end{figure}
 
 \subsection{\'Etat de l'art}
 
@@ -129,11 +134,34 @@ L'apprentissage des affordances est une étape cruciale dans l'approche de la ro
  %
  % A babbling approach consisting in applying random action and observing the corresponding effects can provide the data required to learn it, but where to start from? Defining a priori a limited set of possible actions and corresponding effects is a strong limitation to what the robot can achieve, but applying completely random actions results in a large set of possible effects that may be hard to exploit, in particular if the affordance is represented with a Bayesian network \cite{}.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=.4\textwidth]{figures/affordances}
-	\label{fig:affordances}
-	\caption{Relationship between Actions, Ojects and Effects. \textit{To draw}}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=.4\textwidth]{figures/affordances}
+% 	\label{fig:affordances}
+% 	\caption{Relationship between Actions, Ojects and Effects. \textit{To draw}}
+% \end{figure}
+
+\begin{figure}[!h]
+\centering
+  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+                  thick,main node/.style={circle,draw,minimum size=20mm,font=\Large\bfseries}]
+
+    \node[main node] (1) {Actions};
+    \node[main node] (2) [below left of=1] {Objects};
+    \node[main node] (3) [below right of=1] {Effects};
+
+    % \path
+    %   (2) edge node [below]{} (1)
+    %   (3) edge node[right] {} (1)
+    %       edge node[below] {} (2);
+    \draw[<->] (1) edge  node[sloped, above] {} (2);
+    \draw[<->] (2) edge  node[sloped, above] {} (3);
+    \draw[<->] (3) edge  node[sloped, above] {} (1);
+  \end{tikzpicture}
+
+  \label{fig:affordances}
+	\caption{Relationship between Actions, Ojects and Effects.}
+
 \end{figure}
 
 %% Boostrapping
@@ -189,6 +217,30 @@ Our work is directly based on actual PhD student's work on learning affordances 
 \section{Notre travail}
 
 % \epigraph{Artificial intelligence is the science of making machines do things that would require intelligence if done by men.}{\textit{Marvin Minsky}}
+
+\subsection{Environnement}
+
+L'environnement de travail durant notre stage a consisté en différents modules reliés entre eux : ROS,  le simulateur  Gazebo, le framework Moveit et le robot Baxter. ROS is \textit{a flexible framework for writing robot software. It is a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms\footnote{http://www.ros.org/about-ros/}}.
+
+Gazebo est un simulateur\footnote{http://gazebosim.org}. La figure \ref{fig7} donne un aperçu d'une simulation lancée avec Gazebo.
+
+Moveit
+
+Quant au robot Baxter\footnote{http://www.rethinkrobotics.com/baxter/tech-specs/} (voir figure \ref{fig:baxter}), c'est un robot développé par Rethink Robotic et utilisé à la fois à des fin industrielles et de recherche. Ce robot antropormorphique à 2 bras dispose de 2 fois 7 degrés de liberté et de multiples  senseurs\footnote{http://sdk.rethinkrobotics.com/wiki/Hardware\_Specifications}.
+
+\begin{figure}
+	\centering
+	\includegraphics[angle=-90,width=.5\textwidth]{figures/baxter}
+	\label{fig:baxter}
+	\caption{Baxter robot}
+\end{figure}
+
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=\textwidth]{figures/gazebo}
+% 	\label{fig:gazebo}
+% 	\caption{Gazebo simulator}
+% \end{figure}
 
 \subsection{Adaptative discretization}
 
@@ -312,7 +364,7 @@ Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionn
 %   \item Crossover rate: 0.6, 0.8, 0.7
 % \end{itemize}
 
-NSGA-II étant un algorithme multi-objectif, plusieurs meilleures solutions peuvent être trouvées, correspondants aux individus dominants le front de Pareto. La figure \ref{fig4} montre la valeur du paramètre (de l'algorithme de clustering) correspondant aux individus dominants.
+NSGA-II étant un algorithme multi-objectif, plusieurs meilleures solutions peuvent être trouvées, correspondants aux individus dominants le front de Pareto. La figure \ref{fig4} montre la valeur du paramètre (de l'algorithme de clustering) correspondant aux individus dominants. Différentes valeurs peuvent être relevées, par exemple 0.05, 0.12 ou 0.31.
 
 \begin{figure}[ht]
   \begin{center}
@@ -358,7 +410,7 @@ Afin d'obtenir des jeux de données contenant les différents effets à apprendr
 
 \begin{figure}[ht]
   \begin{center}
-  \includegraphics[width=0.7\textwidth]{figures/Experiment_setup.png}
+  \includegraphics[width=0.7\textwidth]{figures/Experiment_setup_annoted_FR.png}
   \caption{L'objectif du robot est d'apprendre à pousser différents objets (par exemple, un cube) depuis sa position initiale jusqu'à la zone cible.}
   \label{fig7}
   \end{center}
@@ -367,6 +419,8 @@ Afin d'obtenir des jeux de données contenant les différents effets à apprendr
 Durant la première étape, différents objets sont placés successivement sur la table : une boîte de forme cubique, un cylindre et un cône. Ces objets ont différentes propriétés : certains peuvent être poussés à partir de n'importe quelle face et générer un comportement identique (boîte), tandis que d'autres nécessiteront d'être poussés depuis une face particulière (cylindre et cône) afin de garder une trajectoire cohérente. Le babillage réalisé par le robot sur ces différents objets permet de produire des jeux de données d'effets.
 La seconde étape implique l'algorithme que nous avons présenté ci-dessus et tente de clusteriser les effets des jeux de données. Il en résulte une variété de paramètres qui peuvent être exploités durant la troisième étape.
 Les meilleurs paramètres trouvés dans l'étape précédente sont utilisés pour pousser les différents objects vers la zone cible.
+
+La première étape consiste donc en un babillage. Concrétement, la position de l'objet sur l'espace de travail est récupérée. Une trajectoire est générée par cinématique inverse et Novelty Search afin d'atteindre l'objet. Cet objet est positionné de façon aléatoire dans les intervalles [x;x] et [y;y].
 
 % During the first step, several different objects are placed on the table, one after another. Those objects have different properties: a box, a cylinder which and a cone. Some can be pushed from any face and will have the same behavior, whereas the other ones need to be pushed from a particular face to move significantly. The babbling with the different objects would result in a dataset of effects.
 % The second step implies the algorithm we presented above and tries to clusterize the effects in the dataset. As result, a variety of parameter can be exploited during the third stage.
