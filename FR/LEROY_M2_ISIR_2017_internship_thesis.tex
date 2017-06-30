@@ -22,7 +22,6 @@
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 \begin{document}
 
-% \title{\LARGE {\bf From motion effects to affordances: Bayesian learning of high-level actions}}
 \title{From motion effects to affordances: Bayesian learning of high-level actions}
 
 \author{Stanislas Leroy\\
@@ -43,6 +42,10 @@ Université Claude Bernard Lyon 1, France}
 
 % \tableofcontents
 
+
+
+
+
 \section*{Remerciements}
 % \addcontentsline{toc}{chapter}{Acknowledgement}
 
@@ -54,6 +57,9 @@ L'ISIR est un excellent laboratoires de robotique en France et avoir la possibil
 Reprendre des études en 2016 après avoir travaillé quelques années a été un véritable défi pour moi. En effet, cela supposait de quitter la ville où je vivais, mes amis et mon confort matériel ainsi que de revenir sur les bancs de l'université. J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master 2.
 
 % I am very glad to have the opportunity to pursue my works in PhD in the current months.
+
+
+
 
 \section{Introduction}
 
@@ -73,8 +79,11 @@ Les travaux de recherche à l'ISIR sont principalement centrés sur la modélisa
 
 J'ai réalisé mon stage de fin d'études au sein de l'équipe AMAC, dirigée par Stéphane Doncieux. L'équipe est composée de 13 membres permanents et 6 membres non-permanents. Plusieurs membres sont spécialisés en neurosciences tandis que d'autres sont experts en robotique.
 
+
+
+
 \subsection{Le projet DREAM}
-Mon stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}.
+Mon stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}. DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit Restructuration différée de l'expérience dans les machines autonomes est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet a pour objectif d'incorporer un processus de sommeil et l'équivalent de rêves au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
 
 Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (3 chercheurs, 2 post-doctorants, 3 doctorants et 4 stagiaires).
 Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
@@ -84,11 +93,7 @@ Par exemple, plusieurs personnes travaillent sur la perception interactive. L'id
 Carlos : Apprentissage d'affordance
 Pierre : reconnaissance de formes ?
 
-DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit Restructuration différée de l'expérience dans les machines autonomes est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet a pour objectif d'incorporer un processus de sommeil et l'équivalent de rêves au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
-
-% Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{en.wikipedia.org/wiki/Meka_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{www.thymio.org/en:thymio}, le bras robotique CrustCrawler ainsi que le robot baxter de Rethink Robotics. Les 4 derniers robots sont présents au sein de l'ISIR.
-
-Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{http://en.wikipedia.org/wiki/Meka\_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com} ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
+Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{http://en.wikipedia.org/wiki/Meka\_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{www.thymio.org/}, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com} ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
 
 Conditions controlées où tout est connu à l'avance (possible de programmer explicitement le robot à résoudre une tâche) à des environments ouverts où les concepts peuvent changer au cours du temps et où de nouveaux concepts peuvent apparaître. Il faut donc programmer le robot pour qu'il soit autonome et adaptable.
 
@@ -104,8 +109,8 @@ What mechanisms for the system to develop?
 - Information found to be relevant to satisfy motivations while exploring
 possible behaviors
 How to store it and use it to make the robot more efficient the day after?
-- By constructing models and « redescribing » their representation to make
-them more compact and more accurate during robot’s « dreams »
+- By constructing models and \textit{redescribing} their representation to make
+them more compact and more accurate during robot’s \textit{dreams}
 
 evolutionary approach to
 development : alternating between
@@ -117,8 +122,8 @@ Le projet DREAM comprend 4 objectifs : (1) Faire évoluer et décompoer de nouve
 
 \begin{figure}
 	\centering
-	\includegraphics[angle=-90,width=.5\textwidth]{figures/project_structure.png}
-	\label{fig:baxter}
+	\includegraphics[width=.5\textwidth]{figures/project_structure.png}
+	\label{fig:dream}
 	\caption{Baxter robot}
 \end{figure}
 
@@ -135,7 +140,7 @@ Alternance entre interaction active et introspection passive.
 Détails du projet Dream.
 Détails des différents objectifs.
 Description des différentes waves.
-Le projet DREAM est scindé en 13 étapes, appelées \textit{waves} dont la liste est donnée en annexe. 
+Le projet DREAM est scindé en 13 étapes, appelées \textit{waves} dont la liste est donnée en annexe réparties au sein de 8 Work Packages \ref{fig:dream}.
 
 Au terme de ce projet, les différents travaux de recherche des différents membres ont vocation à s'imbriquer les uns avec les autres dans le but de fournir un système global, allant de la détection et le suivi d'objet, à l'apprentissage d'affordances en passant par l'apprentissage de lancers de balle.
 
@@ -144,6 +149,10 @@ La Coruna : travaux sur les motivations extrinsèques.
 Plusieurs expériences sont prévues afin de valider les travaux effectués. La première consiste en un robot avec un bras. Le robot doit placer différents objets dans une zone particulière ou presser des boutons et manipuler des leviers. La deuxième expérience de validation consiste à collecter des balles.
 
 Finalement, pluisieurs résultats sont attendus à l'issue de ce projet. Domaine de la robotique : de nouveaux frameworks pour le boostrapping cognitif, qui s'appuie sur des algorithmes évolutionnaires, avec une alternance entre des phases actives et passives (jour/nuit) et avec des connaissances approfondies en psychologie et neurosciences. Du point de vue des neurosciences, de nouveaux modèles pour la restructuration de connaissance et le bootstrapping cognitif.
+
+
+
+
 
 \subsection{\'Etat de l'art}
 
@@ -154,6 +163,10 @@ Medias are nowadays talking about smart robots for tomorrow or the day after tom
 La robotique développementale constitue un domaine de recherche relativement jeune. Il dérive principalement de la robotique mais tire également ses racines des neurosciences cognitives.
 Apprentissage autonome, généralisation.
 Plus efficace de créer un robot qui apprend qu'un robot auquel on apprend beaucoup de choses.
+
+
+
+
 
 %% Affordances
 % Affordances are an important concept when talking about sensorimotor learning. The term was defined in \cite{opac-b1085639} as what \textit{it offers the animal, what it provides or furnishes}. The main idea behing that term is to be able to discover the different actions that can be performed on an object, by considering available abilities. That definition establishes a strong relation between objects, actions and effects (see Figure \ref{fig:affordances}). For instance, for a robot with a grasper, affordances on a simple box are: pushing, grasping or touching. Furthermore, affordances can be also used to identify or reproduce action as described in \cite{4399517}.
@@ -194,15 +207,24 @@ L'apprentissage des affordances est une étape cruciale dans l'approche de la ro
 
 \end{figure}
 
+
+
+
 %% Boostrapping
 \subsubsection{Boostrapping}
 Meltzoff et al. explained in \cite{EDP:EDP157} that infants do not know a priori what muscle movements achieve a particular state of organ relations. The authors call that process body babbling, directly inspired from babbling when infants experiment vocal sounds. In short, they explain that infants do repeated moves as a game. Eventually, after a certain amount of time and repetitions, infants would learn the relation between the moves they perform and theirs effects. That concept was reused in developmental robotics. Indeed, for a robot, learning affordances requires to interact with the environment throught an exploration stage, which corresponds to babbling. Several heuristics exist to perform that exploration.
+
+
+
 
 %% Motor babbling
 \subsubsection{Motor babbling}
 Une première approche naïve consiste à utiliser des mouvements aléatoires. Cette approche est la plus simple à implémenter mais elle peut générer un nombre important de mouvements qui ne produisent pas de contact avec les objets.
 
 Une seconde approche est présentée dans dans \cite{Maestre2015} dans lequel Maestre et al. décrivent l'utilisation de Novelty Search, une algorithme évolutionnaire, afin de générer des trajectoires visant à maximiser l'exploration de l'environment. Les résultats montrent que les trajectoires permettant de toucher les objets sont davantage privilégiées au fur et à mesure des générations.
+
+
+
 
 %% Intrinsic motivations
 \subsubsection{Intrinsic motivations}
@@ -218,6 +240,10 @@ multi-purpose assistive robots which can be helpful in a wide range of realistic
 
 %% Cognitive Developmental
 Cognitive Developmental robotics is a promising approach to create robots with higher cognitive functions as shown in \cite{Asada2009} by Asada et al.
+
+
+
+
 
 %% Use of tools
 \subsubsection{Utilisation d'outils}
@@ -235,6 +261,9 @@ described a system that allows a robot to learn goal emulation by using learnt a
 - bootstrap object-oriented behavior
 - discover object in an unknown environment
 
+
+
+
 \subsection{Related work}
 
 Ce stage de fin d'études l'a été dans le cadre du projet DREAM, débuté en 2015. Ce projet implique 5 partenaires académiques: UMPC/CNRS (coordinateur), ENSTA ParisTech, Universidade da Coruña, Vrije Universiteit Amsterdam et Queen Mary University of London. Ces différents acteurs ont différents rôles au sein du projet DREAM. See waves.
@@ -248,9 +277,15 @@ Our work is directly based on actual PhD student's work on learning affordances 
 
 % Executed in an iterative loop, a dataset is created by the robot through the babbling of its environment; some candidate world models are defined based on the data gathered; and a new dataset is created, in order to discriminate these models, improve them and generate new simpler ones."
 
+
+
+
 \section{Notre travail}
 
 % \epigraph{Artificial intelligence is the science of making machines do things that would require intelligence if done by men.}{\textit{Marvin Minsky}}
+
+
+
 
 \subsection{Environnement}
 
@@ -276,7 +311,12 @@ Quant au robot Baxter\footnote{http://www.rethinkrobotics.com/baxter/tech-specs/
 % 	\caption{Gazebo simulator}
 % \end{figure}
 
+
+
+
 \subsection{Adaptative discretization}
+
+
 
 \subsubsection{Previous works}
 
@@ -292,6 +332,9 @@ Afin de réaliser cela, le nombre des actions prédéfinies disponibles était f
 En raison de la nécessesité de généraliser,
 For purpose of generalization, it would not be possible to let such a value. The first step of the internship focused on the goal of achieving environment's \textbf{adaptative discretization}. The main idea behind is to let the agent itself discover actions without specifying an arbitraty number of actions to discover.  In order to do so, clusterization is used to distinguish those different actions. X-means algorithm\cite{Pelleg:2000:XEK:645529.657808}, based on k-means, was used at the beginning. Basically, X-means is a k-means algorithm's generalization, which finds itself the best value for $k$.
 
+
+X-means, travaux d'Ugur pour clusteriser les effets. Mais pas paramètrable. Cf long abstract (v1, v2, v3).
+
 % \begin{figure}
 % 	\centering
 % 	\includegraphics[width=\textwidth]{figures/before_offset_correction.png}
@@ -306,21 +349,19 @@ For purpose of generalization, it would not be possible to let such a value. The
 % 	\caption{Trajectories where initial points' offset are corrected}
 % \end{figure}
 
+
+
 \subsubsection{Algorithmes de clustering}
 
-En nous basant sur \cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} et \cite{Sajana2016}, nous avons réalisé une synthèse des algorithmes de clustering les plus communément utilisés, groupés en catégories (c.f. Annexe pour plus de détails). Afin de filter et sélectionner les algorihtmes, nous avons choisi des critères non arbitraires. En se référant à la généralisation mentionnée ci-dessus, un premier critère concerne la nécessité de ne pas fournir le nombre attendu de clusters en paramètre. En effet, puisque le système doit être capable de trouver lui-même le nombre correct d'actions. Un second critère concerne la possibilité de travailler avec de nombreuses dimensions et un troisième concerne la disponibilité d'une implémentation en Python ou C++. Les algorithmes qui ne satisfaisaient pas à ces critères ont été rejetés.
+En nous basant sur \cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} et \cite{Sajana2016}, nous avons réalisé une synthèse des algorithmes de clustering les plus communément utilisés, groupés en catégories (c.f. Annexe pour plus de détails). Afin de filtrer et sélectionner les algorihtmes les plus pertinents, nous avons choisi des critères non arbitraires. En se référant à la généralisation mentionnée ci-dessus, un premier critère concerne la nécessité de ne pas fournir le nombre attendu de clusters en paramètre. En effet, puisque le système doit être capable de trouver lui-même le nombre correct d'actions. Un second critère concerne la possibilité de travailler avec de nombreuses dimensions et un troisième concerne la disponibilité d'une implémentation en Python ou C{}\verb!++!. Les algorithmes ne satisfaisant pas à ces critères ont été rejetés.
 
-7 algorithmes de clustering ont été comparés lors de cette première phase : X-means\textsuperscript{1}, Affinity Propagation\textsuperscript{1}, DBSCAN\textsuperscript{2}, HDBSCAN\textsuperscript{2}, OPTICS\textsuperscript{2}, Mean-Shift\textsuperscript{2} et Level Set Tree. (1) correspondent à des algorithmes de partitionnement et (2) correspondent à des algorithmes basés sur la densité.
+Sur la centaine d'algorithmes de clustering existants, 7 ont été retenus lors de cette première phase : X-means\textsuperscript{1}, Affinity Propagation\textsuperscript{1}, DBSCAN\textsuperscript{2}, HDBSCAN\textsuperscript{2}, OPTICS\textsuperscript{2}, Mean-Shift\textsuperscript{2} et Level Set Tree. (1) correspondent à des algorithmes de partitionnement et (2) correspondent à des algorithmes basés sur la densité.
 
 % Based on \cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} and \cite{Sajana2016}, we reviewed the most common algorithms used for clustering, grouped in categories (see annex for details). Non-arbitrary criteria were required for filtering algorithms. According to the generalization mentioned above, a first criterion concerns the requirement to pass the number of clusters as input parameter. Indeed, as the system should be able to find itself the correct number of actions. A second criterion concern the possibility to work with high dimensionality and a third one is the implemenation's availabily in Python or C++. Algorithms that did not suit to those parameters were discarded.
 
-% 7 implementations of clustering algorithm were compared: X-means\textsuperscript{1}, Affinity Propagation\textsuperscript{1}, DBSCAN\textsuperscript{2}, HDBSCAN\textsuperscript{2}, OPTICS\textsuperscript{2}, Mean-Shift\textsuperscript{2} and Level Set Tree. (1) are partitioning algorithms and (2) are density-based algorithms.
-
-% Amongst those algorithms, Affinity Propagation is the only one which found a correct result according to the input dataset. It is able to detect the 7 different clusters without finding outliers. See Figure~\ref{fig:ap}.
-
 The intuition behind that choice is based on the fact that the different categories of actions have roughly the same end position. In other terms, a \textbf{Left} action will end in the specific area for left actions. Hence, a large amount of space will be empty and will not contain any end positions. The points distribution would lead to focus on finding areas of high density. For that purpose, density-based algorithms exist.
 
-Afin de comparer les différents algorithmes, une série de tests a été réalisée avec 2 jeux de données différents : un dataset avec une distribution uniforme de points et un jeu de données généré en simulation.
+% Afin de comparer les différents algorithmes, une série de tests a été réalisée avec 2 jeux de données différents : un dataset avec une distribution uniforme de points et un jeu de données généré en simulation.
 
 
 % \begin{figure}
@@ -353,17 +394,15 @@ Afin de comparer les différents algorithmes, une série de tests a été réali
 % 	\label{fig:comparison}
 % \end{figure}
 
-% A solution found for that problem was to normalize points' distance to the origin. As a result, points are projected on a circle of radius 1. The new graph is shown in Figure~\ref{fig:comparison}. In that graph, we see that the algorithm (HDBSCAN) performs better than in the previous referential. Whereas that idea has a clear advantage in improving clustering, the concept of action' strenght is not taken into account because the focus is only done on action's direction.
-%
+
+
 % In extension of that normalisation, another solution was to convert coordinates from cartesian referential to polar referential. We found (give results...) that the clustering algorithms performed better with polar coordinates than with cartesian coordinates. Indeed, angular apertures are much more clearly distinguished. This is specially the case when values are separated with several close to the origin and others far from it.
 
-\subsubsection{Implémentation}
-Nous avons utilisé le framework C++ Sferes \cite{Mouret2010} développé au sein de l'équipe AMAC et dédié aux calculs évolutifs. Ce framework a pour avantages d'être léger, multi-coeur et facilement extensible. Un très grand nombre
 
-A large amount of clustering algorithms exist and were found in a previous stage (see in Annex). Seven of them were selected (mainly partition and density-based algorithms). A problem was to find the best algorithm and parameters for a given dataset. We needed also a way to validate the parameters found.
-That algorithm is used by the fitness function within the evolutionary algorithm. The proposed method consists in an iterative algorithm in which a clustering algorithm is tuned in order to satisfy three different objectives: \circled{1} the number of moves to reach the goal, to be minimized to make the robot as fast as possible, \circled{2} the number of clusters, to be minimized in order to simplify computations and \circled{3} the final distance to the goal, to be minimized for the accuracy of the control.
-% As there were different objectives to minimize, we selected the NSGA-II\cite{Deb:2002:FEM:2221359.2221582} evolutionary algorithm to fulfill this task.
-Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionné l'algorithme évolutif NSGA-II\cite{Deb:2002:FEM:2221359.2221582} pour remplir cette tâche.
+\subsubsection{Implémentation}
+Pour implémenter notre algorithme, nous avons utilisé le framework C{}\verb!++! Sferes \cite{Mouret2010} développé au sein de l'équipe AMAC et dédié aux calculs évolutifs. Ce framework a pour avantages d'être léger, multi-coeur et facilement extensible. 
+
+Un très grand nombre d'algorithmes de clustering existent et ont été trouvés dans l'étape précédente. Sept d'entre eux ont été sélectionnés (principalement des algorithms de partitionnemente et densité). L'enjeu conistait à trouver le meilleur algorithme et paramètres associés pour un jeu de données. Nous avions également besoin d'une méthode pour valider les paramètres trouvés. Cet algorithme est utilisé par la fonction fitness au sein de l'algorithme évolutionnaire. La méthode proposée consiste en un algorihtme itératif au sein duquel un algorithme de clustering est réglé afin de satisfaire à 3 objectifs : \circled{1} le nombre de mouvements pour atteindre la cible, devant être minimisé pour faire en sorte que le robot soit le plus rapide possible, \circled{2} le nombre de clusters, devant être minimisé pour simplifier le calcul et \circled{3} la distance finale, à minimiser pour la précision du contrôle. Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionné l'algorithme évolutif NSGA-II\cite{Deb:2002:FEM:2221359.2221582} pour remplir cette tâche.
 
 \begin{algorithm}
 \caption{Evaluation algorithm for fitness function}\label{euclid}
@@ -387,149 +426,192 @@ Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionn
   \end{algorithmic}
 \end{algorithm}
 
+Une validation expérimentale de notre méthode a été effectuée en utilisant l'algorithme \textit{Mean Shift}, qui a révélé empiriquement la génération de clusters plus divers que \textit{X-means} lorsque ses paramètres ont été changés. Le génotype est constitué par la valeur d'un seul paramètre décimal associé à cet algorithme. La population initiale est constituée de 32 individus, évalués durant 25 générations. Les taux de croisement et de mutation pour NSGA-II sont respectivement de 0.8 et 0.1. Nous avons utilisé un jeu de données généré par un babillage orienté-objet simulé (voir ). Un point final a été aléatoirement généré au début de l'expérience. La fitness a été évaluée 30 fois pour chaque individu, les valeurs moyennes des objectifs étant ensuite reportées.
 
-
-% \ \\In order to obtain interesting results, we realize experiments based on the following experimental design, in full factorial design :
-%
-% \begin{itemize}
-%   \item Population size: 50, 100, 200
-%   \item Number of generations: 100, 200, 500
-%   \item Mutation probability: 0.1, 0.2, 0.5
-%   \item Crossover rate: 0.6, 0.8, 0.7
-% \end{itemize}
-
-NSGA-II étant un algorithme multi-objectif, plusieurs meilleures solutions peuvent être trouvées, correspondants aux individus dominants le front de Pareto. La figure \ref{fig4} montre la valeur du paramètre (de l'algorithme de clustering) correspondant aux individus dominants. Différentes valeurs peuvent être relevées, par exemple 0.05, 0.12 ou 0.31.
+Les résultats ont été comparés avec une discrétization obenue par une recherche de type \textit{Grid Search} dans l'espace de paramètres. Les clusters obtenus pour différentes valeurs du paramètre \textit{quantile} de \textit{Mean Shift} sont listés dans la figure \ref{fig:validation} 
 
 \begin{figure}[ht]
   \begin{center}
-  \includegraphics[width=0.4\textwidth]{figures/Pareto_front.pdf}
+  \includegraphics[width=\textwidth]{figures/DS2_MS.pdf}
+    \caption{Clusters en fonction de l'évolution du paramètre \textit{quantile} de l'algorithme \textit{Mean Shift}. Les valeurs sont comprises dans l'intervalle [0.050;0.44].}
+  \label{fig:validation}
+  \end{center}
+\end{figure}
+
+NSGA-II étant un algorithme multi-objectif, plusieurs meilleures solutions peuvent être trouvées, correspondants aux individus dominants le front de Pareto. La figure \ref{fig:pareto_front} montre la valeur du paramètre (de l'algorithme de clustering) correspondant aux individus dominants. Différentes valeurs peuvent être relevées, par exemple 0.05, 0.12 ou 0.31.
+
+% \begin{figure}[ht]
+%   \begin{center}
+%   \includegraphics[width=0.4\textwidth]{figures/Pareto_front.pdf}
+%     \caption{Valeur du paramètre de l'algorithme de clustering Mean Shift correspondant aux individus dominants le front de Pareto.}
+%   \ref{fig4}
+%   \label{fig4}
+%   \end{center}
+% \end{figure}
+
+\`A partir de cet ensemble de meilleures valeurs de paramètres, nous avons généré (Figure \ref{fig:results}) deux séries de graphiques. Les deux ensembles de clusters optimisent différents objectifs : vitesse et précision pour celui de gauche contre coût computationnel pour celui de droite. La colonne de gauche contient davantage de clusters et permet un contrôle rapide et précis. \`A l'inverse, l'autre solution repose sur un nombre moins important de clusters.
+
+% \begin{figure}[ht]
+%   \begin{center}
+%   \includegraphics[width=0.5\textwidth]{figures/Benchmark_3.pdf}
+%   % \caption{The two columns show different clustering results and evaluation trajectories based on parameter values belonging to indivuals on Pareto Front.}
+%   \caption{Les deux colonnes montrent différents résultats de clustering et de trajectoires d'évaluations basés sur les valeurs de paramètres appartenant aux individus dominants le front de Pareto.}
+%   \label{fig6}
+%   \end{center}
+% \end{figure}
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/Pareto_front.pdf}
     \caption{Valeur du paramètre de l'algorithme de clustering Mean Shift correspondant aux individus dominants le front de Pareto.}
-  \ref{fig4}
-  \label{fig4}
-  \end{center}
+    \label{fig:pareto_front}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{figures/Benchmark_3.pdf}
+    \caption{Les deux colonnes montrent différents résultats de clustering et de trajectoires d'évaluations basés sur les valeurs de paramètres appartenant aux individus dominants le front de Pareto.}
+    \label{fig:results}
+  \end{minipage}
 \end{figure}
 
-\`A partir de ces meilleures valeurs de paramètres, nous avons généré (Figure \ref{fig6}) deux séries de graphiques. Les deux ensembles de clusters optimisent différents objectifs : vitesse et précision contre coût computationnel. La colonne de gauche contient davantage de clusters et permet un contrôle rapide et précis. \`A l'inverse, l'autre solution repose sur un nombre moins important de clusters.
 
-\begin{figure}[ht]
-  \begin{center}
-  \includegraphics[width=0.5\textwidth]{figures/Benchmark_3.pdf}
-  % \caption{The two columns show different clustering results and evaluation trajectories based on parameter values belonging to indivuals on Pareto Front.}
-  \caption{Les deux colonnes montrent différents résultats de clustering et de trajectoires d'évaluations basés sur les valeurs de paramètres appartenant aux individus dominants le front de Pareto.}
-  \label{fig6}
-  \end{center}
+Clusterisation based on Ugur's paper: 40 features. Compare Ugur's work with us.\\
+
+Cette première partie de notre stage a fait l'objet d'une soumission d'un abstract au workshop \textit{Developmental learning and representation building in human-robots and ambient intelligence systems} de la conférence ECAL2017\footnote{https://project.inria.fr/ecal2017/} qui se tient à Lyon en septembre 2017.
+
+
+
+
+
+
+\subsection{Expérience de validation}
+La seconde partie de notre stage a consisté à mener une expérience en se basant sur l'algorithme de clusterisation d'effets défini dans la première partie. Dans un premier temps, l'expérimentation a eu lieu en simulation. Une fois cette simulation validée, le robot réel a été utilisé. Cette expérience peut être divisée en 3 étapes : \circled{1} génération du babbling sensorimoteur et enregistrement des effets pour les différents objets, \circled{2} réalisation de la clusterization des effets et \circled{3} test de l'apprentissage.  La figure \ref{fig:setup} représente la mise en place initiale de l'expérimentation.
+
+Durant la première étape de cette expérimentation, un objet (cube) est placé sur la table et un babillage est réalisé afin d'obtenir des jeux de données contenant les différents effets à traiter. Ce babillage est effectué à l'aide de l'algorithme NovEB décrit par par Maestre et al. dans \cite{Maestre2015}. Cet algorithme utilise l'algorithme évolutionnaire \textit{Novelty Search}\cite{5949955} pour générer des trajectoires permettant d'atteindre un objet dans le cadre d'un babillage. Pour cela, le calcul des trajectoires est effectué dans un premier temps \textit{via} sélection/mutation. Puis, pour chaque trajectoire, l'on regarde si elle intersecte avec le cube. Si c'est le cas, cette trajectoire est gardée et jouée par le robot en simulation. La figure \ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet considéré.
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/Experiment_setup_annoted_FR.png}
+    \caption{L'objectif du robot est d'apprendre à pousser différents objets (par exemple, un cube) depuis sa position initiale jusqu'à la zone cible.}
+    \label{fig:setup}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/ns_trajectory.png}
+    \caption{Génération de trajectoire avec NovEB. Le rectangle rouge représente l'emplacement du robot. Le point rouge correspond à la position initiale de l'effecteur du robot. Le tracé en bleu correspond à la trajectoire de cet effecteur vers l'objet. L'étoile verte indique la position de l'objet à la fin de l'exécution de la trajectoire de l'effecteur.}
+    \label{fig:ns_traj}
+  \end{minipage}
 \end{figure}
 
-Clusterisation based on Ugur's paper: 40 features. Compare Ugur's work with us.
+% \begin{figure}[ht]
+%   \begin{center}
+%   \includegraphics[width=0.7\textwidth]{figures/Experiment_setup_annoted_FR.png}
+%   \caption{L'objectif du robot est d'apprendre à pousser différents objets (par exemple, un cube) depuis sa position initiale jusqu'à la zone cible.}
+%   \label{fig:setup}
+%   \end{center}
+% \end{figure}
 
-Cette première partie de notre stage a fait l'objet d'une soumission d'un abstract long au workshop \textit{Developmental learning and representation building in human-robots and ambient intelligence systems} de la conférence ECAL2017\footnote{https://project.inria.fr/ecal2017/} qui se tient à Lyon en septembre 2017.
-
-% \subsection{Transfer learning on a simple task}
-
-% \subsection{Symbolic planning}
-
-\subsubsection{Pushing object experiment}
-La seconde partie de notre stage a consisté à mener une expérience en se servant de l'algorithme de clusterisation d'effets décrit ci-dessus. Une première expérimentation a eu lieu en simulation puis à l'aide du robot réel. Cette expérience peut être divisée en 3 étapes : \circled{1} génération du babbling sensorimoteur et enregistrement des effets pour les différents objets, \circled{2} réalisation de la clusterization des effets et \circled{3} test de l'apprentissage.  Voir figure \ref{fig7} pour la mise en place initiale.
-
-Afin d'obtenir des jeux de données contenant les différents effets à apprendre, le babillage sensorimoteur a été effectué à l'aide de l'algorithme génétique Novelty Search\cite{5949955}. Cette approche est utilisée par Maestre et al. dans \cite{Maestre2015}. Pour cela, le calcul des trajectoires est effectué dans une première étape. Pour chaque trajectoire, on regarde si elle intersecte avec le cube. Si c'est le cas, cette trajectoire est gardée et jouée par le robot en simulation. La figure \ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet considéré.
+% \begin{figure}[ht]
+%   \begin{center}
+%   \includegraphics[width=0.7\textwidth]{figures/ns_trajectory.png}
+%   \caption{Génération de trajectoire avec NovEB. Le rectangle rouge représente l'emplacement du robot. Le point rouge correspond à la position initiale de l'effecteur du robot. Le tracé en bleu correspond à la trajectoire de cet effecteur vers l'objet. L'étoile verte indique la position de l'objet à la fin de l'exécution de la trajectoire de l'effecteur.}
+%   \label{fig:ns_traj}
+%   \end{center}
+% \end{figure}
 
 
-\begin{figure}[ht]
-  \begin{center}
-  \includegraphics[width=0.7\textwidth]{figures/ns_trajectory.png}
-  \caption{Le rectangle rouge indique la position du robot. Le point rouge correspond au point de départ de l'effecteur du robot. Le tracé en bleu correspond à la trajectoire de cet effecteur vers l'objet. L'étoile verte indique la position de l'objet à la fin de l'exécution de la trajectoire de l'effecteur.}
-  \label{fig:ns_traj}
-  \end{center}
-\end{figure}
-
-\begin{figure}[ht]
-  \begin{center}
-  \includegraphics[width=0.7\textwidth]{figures/Experiment_setup_annoted_FR.png}
-  \caption{L'objectif du robot est d'apprendre à pousser différents objets (par exemple, un cube) depuis sa position initiale jusqu'à la zone cible.}
-  \label{fig7}
-  \end{center}
-\end{figure}
-
-Durant la première étape, différents objets sont placés successivement sur la table : une boîte de forme cubique, un cylindre et un cône. Ces objets ont différentes propriétés : certains peuvent être poussés à partir de n'importe quelle face et générer un comportement identique (boîte), tandis que d'autres nécessiteront d'être poussés depuis une face particulière (cylindre et cône) afin de garder une trajectoire cohérente. Le babillage réalisé par le robot sur ces différents objets permet de produire des jeux de données d'effets.
-La seconde étape implique l'algorithme que nous avons présenté ci-dessus et tente de clusteriser les effets des jeux de données. Il en résulte une variété de paramètres qui peuvent être exploités durant la troisième étape.
+% Ces objets ont différentes propriétés : certains peuvent être poussés à partir de n'importe quelle face et générer un comportement identique (boîte), tandis que d'autres nécessiteront d'être poussés depuis une face particulière (cylindre et cône) afin de garder une trajectoire cohérente. Le babillage réalisé par le robot sur ces différents objets permet de produire des jeux de données d'effets.
+La seconde étape implique l'algorithme que nous avons présenté ci-dessus et vise à clusteriser les effets présents dans les jeux de données. Il en résulte une variété de paramètres qui peuvent être exploités durant la troisième étape.
 Les meilleurs paramètres trouvés dans l'étape précédente sont utilisés pour pousser les différents objects vers la zone cible.
 
-La première étape consiste donc en un babillage. Concrétement, la position de l'objet sur l'espace de travail est récupérée ainsi que la position de l'effecteur. Une trajectoire est ensuite générée à l'aide de la cinématique inverse et Novelty Search afin d'atteindre l'objet. Cet objet est positionné de façon aléatoire dans les intervalles [x;x] et [y;y].
+% La première étape consiste donc en un babillage. Concrétement, la position de l'objet sur l'espace de travail est récupérée ainsi que la position de l'effecteur. Une trajectoire est ensuite générée à l'aide de la cinématique inverse et Novelty Search afin d'atteindre l'objet. Cet objet est positionné de façon aléatoire dans les intervalles [x;x] et [y;y].
+
+Enfin, dans un troisième temps, le robot tente de pousser l'objet présenté devant lui vers une zone cible, en utilisant les différents effets à sa disposition. Cette dernière étape soulève plusieurs problèmes qu'il a fallu résoudre. Tout d'abord, concernant la position de l'effecteur. Les effets générés lors du babillage sont effectués à partir de différentes faces de l'objet. Ainsi, lorsque le robot tente de pousser l'objet vers la zone cible, en fonction de la position de cette zone à atteindre, les effets seront différents ainsi que les faces/points de contacts d'où initier les effets. \`A chaque effet est associé un point de contact dans le repère de l'objet. Cela nous a amené à récupérer les coordonnées du point de contact pour savoir d'où initier l'effet. Ces coordonnées sont exprimées dans le repère lié à l'objet et sont corrélées à l'effet enregistré. Le second problème a trait avec la tâche en tant que telle : l'objectif visé n'est pas de pousser simplement un objet jusqu'à une zone finale, mais d'effectuer une geste avec une vélocité élevée afin de pousser fortement l'objet jusqu'à la zone inacessible pour le bras du robot. Utilisation de Quality Diversity pour effectuer le babillage concernant la vélocité.
+
 
 % During the first step, several different objects are placed on the table, one after another. Those objects have different properties: a box, a cylinder which and a cone. Some can be pushed from any face and will have the same behavior, whereas the other ones need to be pushed from a particular face to move significantly. The babbling with the different objects would result in a dataset of effects.
 % The second step implies the algorithm we presented above and tries to clusterize the effects in the dataset. As result, a variety of parameter can be exploited during the third stage.
 % The best parameters found in the previous stage are used for pushing the different object into the goal area.
 
-
-Les effets sont réalisés relativement au repère lié à l'objet.
-
-Premier problème : position de l'end effector. En effet, en fonction de la position de la zone cible à atteindre, les effets seront différents ainsi que les faces/points de contacts d'où initier les effets. \'A chaque effet est associé un point de contact dans le repère de l'objet.
-
-Deuxième problème : l'objectif visé n'est pas de pousser simplement un objet jusqu'à une zone finale, mais d'effectuer une geste avec une vélocité élevé afin de pousser fortement l'objet jusqu'à la zone inacessible pour le bras du robot. Utilisation de Quality Diversity pour effectuer le babillage concernant la vélocité.
-
-
 \section{Discussion}
 % \epigraph{A computer would deserve to be called intelligent if it could deceive a human into believing that it was human.}{\textit{Alan Turing}}
+
+
+
+
+
+
 
 \section{Future works \& Perspectives}
 
 Plusieurs axes d'améliorations peuvent être proposés. Durant ce stage, nous avons testé l'algorithme présenté ci-dessus avec un seul algorithme de clustering, \textit{Mean Shift}. Le premier axe d'amélioration consisterait à tester davantage d'algorithmes de clustering, tels qu'\textit{Affinity Propagation}, \textit{Birch} ou \textit{DBSCAN}. Un second axe d'amélioration pourrait être de tester l'algorithme avec des tâches plus complexes.
 
+Concernant l'expérience utilisant la clusterisation d'effets, il pourrait être pertinent de la réaliser en utilisant d'autres objets ayant différentes propriétés : un cylindre et un cône. Le cylindre a pour particularité de rouler sur une grande distance rectiligne lorsqu'il est poussé depuis sa face courbe alors que ce mouvement est plus réduit lorsqu'il est poussé depuis l'une de ses bases. A l'inverse, un cône décrit une courbe s'il est poussé depuis sa face courbe et nécessite d'être poussé depuis sa base pour parcourir une grande distance rectiligne. Un babillage avec ces deux objets pourrait permettre au robot d'apprendre à repositionner les objets afin d'exposer leur face appropriée aux différentes actions (face courbe pour le cylindre et base pour le cône).
+
 L'algorithme décrit dans ce mémoire a été utilisé pour une expérience réalisée en collaboration avec UDC et ISIR en vue du de la réunion d'évaluation du projet qui se tient mi-septembre. Cette expérience consiste à faire en sorte que le robot puisse atteindre différentes zones matérialisées par des zones RFID. Utilisation du Reinforcement Learning.
+
+
+
+
+
 
 \section{Conclusion}
 
 Ce stage de fin d'études de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale et ce qu'il implique, après la brève introduction que nous avons eu durant le semestre de M2 à Lyon. Ce domaine de recherche est fascinant et très intéressant dans la mesure où les chercheurs tendent à créer des robots qui pourraient boostrap from almost no knowledge. Le lien étroit entre neurosciences et spécialement neurosciences cognitives permet d'implémenter des modèles présent chez l'être humain.
 
-\section*{Annexe}
+In that paper, we have proposed an approach to allow a robot learn from its own experiments and exploit babbling data in order to identify sets of reachable effects that define actions relevant to a task-dependant context. In the future, we will extend that approach by using more clustering al- gorithms and parameters, and investigate its application to more complex and varied tasks.
 
-Liste des différentes waves
+% \section*{Annexe}
 
-\begin{tabular}{|l|c|r|}
-  \hline
-  No & Requirements 2 & Partners \\
-  \hline
-  W1 & Babbling & UPMC \\
-  W2 & Saliency Learning & UPMC \\
-  W2 & Saliency Learning & UPMC \\
-  W3 & Object Babbling & UPMC \\
-  W4 & Object Interaction Babbling & UPMC \\
-  W5 & Object Interaction discretization & UPMC \\
-  W6a & End to End policy pre-training & QMUL \\
-  W6b & End to End policy fine tuning & QMUL \\
-  W7 & Feature learning & Armines \\
-  W8 & Feature Based Reinforcement Learning & Armines \\
-  W9 & Policy-based exploration & Armines \\
-  W10 & Contextual Policy learning & UPMC \\
-  W11 & Model learning & UDC \\
-  W12 & Value function learning & UDC \\
-  W13 & Policy modularization & QMUL \\
-  \hline
-\end{tabular}
+% Liste des différentes waves
 
-Liste des différentes working packages
+% \begin{tabular}{|l|c|r|}
+%   \hline
+%   No & Requirements 2 & Partners \\
+%   \hline
+%   W1 & Babbling & UPMC \\
+%   W2 & Saliency Learning & UPMC \\
+%   W2 & Saliency Learning & UPMC \\
+%   W3 & Object Babbling & UPMC \\
+%   W4 & Object Interaction Babbling & UPMC \\
+%   W5 & Object Interaction discretization & UPMC \\
+%   W6a & End to End policy pre-training & QMUL \\
+%   W6b & End to End policy fine tuning & QMUL \\
+%   W7 & Feature learning & Armines \\
+%   W8 & Feature Based Reinforcement Learning & Armines \\
+%   W9 & Policy-based exploration & Armines \\
+%   W10 & Contextual Policy learning & UPMC \\
+%   W11 & Model learning & UDC \\
+%   W12 & Value function learning & UDC \\
+%   W13 & Policy modularization & QMUL \\
+%   \hline
+% \end{tabular}
 
-\begin{tabular}{|l|c|r|}
-  \hline
-  No & Requirements 2 & Partners \\
-  \hline
-  W1 & Babbling & UPMC \\
-  W2 & Saliency Learning & UPMC \\
-  W2 & Saliency Learning & UPMC \\
-  W3 & Object Babbling & UPMC \\
-  W4 & Object Interaction Babbling & UPMC \\
-  W5 & Object Interaction discretization & UPMC \\
-  W6a & End to End policy pre-training & QMUL \\
-  W6b & End to End policy fine tuning & QMUL \\
-  W7 & Feature learning & Armines \\
-  W8 & Feature Based Reinforcement Learning & Armines \\
-  W9 & Policy-based exploration & Armines \\
-  W10 & Contextual Policy learning & UPMC \\
-  W11 & Model learning & UDC \\
-  W12 & Value function learning & UDC \\
-  W13 & Policy modularization & QMUL \\
-  \hline
-\end{tabular}
+% Liste des différentes working packages
+
+% \begin{tabular}{|l|c|r|}
+%   \hline
+%   No & Requirements 2 & Partners \\
+%   \hline
+%   W1 & Babbling & UPMC \\
+%   W2 & Saliency Learning & UPMC \\
+%   W2 & Saliency Learning & UPMC \\
+%   W3 & Object Babbling & UPMC \\
+%   W4 & Object Interaction Babbling & UPMC \\
+%   W5 & Object Interaction discretization & UPMC \\
+%   W6a & End to End policy pre-training & QMUL \\
+%   W6b & End to End policy fine tuning & QMUL \\
+%   W7 & Feature learning & Armines \\
+%   W8 & Feature Based Reinforcement Learning & Armines \\
+%   W9 & Policy-based exploration & Armines \\
+%   W10 & Contextual Policy learning & UPMC \\
+%   W11 & Model learning & UDC \\
+%   W12 & Value function learning & UDC \\
+%   W13 & Policy modularization & QMUL \\
+%   \hline
+% \end{tabular}
 
 % % \addcontentsline{toc}{chapter}{Annex}
 %
