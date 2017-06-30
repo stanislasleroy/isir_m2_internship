@@ -86,9 +86,41 @@ Pierre : reconnaissance de formes ?
 
 DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit Restructuration différée de l'expérience dans les machines autonomes est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet a pour objectif d'incorporer un processus de sommeil et l'équivalent de rêves au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
 
-% Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{https://en.wikipedia.org/wiki/Meka_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{https://www.thymio.org/en:thymio}, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com/} ainsi que le robot baxter de Rethink Robotics. Les 4 derniers robots sont présents au sein de l'ISIR.
+% Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{en.wikipedia.org/wiki/Meka_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{www.thymio.org/en:thymio}, le bras robotique CrustCrawler ainsi que le robot baxter de Rethink Robotics. Les 4 derniers robots sont présents au sein de l'ISIR.
 
-Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka, PR2 de Willow Garage, plusieurs Thymio-2, le bras robotique CrustCrawler ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
+Les différents partenaires académiques disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{http://en.wikipedia.org/wiki/Meka\_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com} ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
+
+Conditions controlées où tout est connu à l'avance (possible de programmer explicitement le robot à résoudre une tâche) à des environments ouverts où les concepts peuvent changer au cours du temps et où de nouveaux concepts peuvent apparaître. Il faut donc programmer le robot pour qu'il soit autonome et adaptable.
+
+Motivation du projet : Concevoir un système développemental capable de démarrer depuis une représentation agnostique et switcher, de façon progressive et autonome, vers des représentations plus adaptées. Question : comment boostraper ?
+
+Where to start from?
+- Task agnostic system, no specific representation imposed
+- Raw sensorimotor flow
+- Basic motivation system
+What mechanisms for the system to develop?
+- cognitive architecture relying on evolutionary algorithms
+- What information is relevant?
+- Information found to be relevant to satisfy motivations while exploring
+possible behaviors
+How to store it and use it to make the robot more efficient the day after?
+- By constructing models and « redescribing » their representation to make
+them more compact and more accurate during robot’s « dreams »
+
+evolutionary approach to
+development : alternating between
+• active interaction (daytime) and
+• passive introspection over past
+events (nighttime and dreams)
+
+Le projet DREAM comprend 4 objectifs : (1) Faire évoluer et décompoer de nouvelles valeurs et motivations, (2) Restructurer les représentations et modèles, (3) Consolider la connaissance et (4) expand la connaissance à travers les interactions sociales.
+
+\begin{figure}
+	\centering
+	\includegraphics[angle=-90,width=.5\textwidth]{figures/project_structure.png}
+	\label{fig:baxter}
+	\caption{Baxter robot}
+\end{figure}
 
 Accumuler de la connaissance nécessite des processus de consolidation afin d'éviter d'être submergé par les informations. Le sommeil crucial pour la restructuration des représentations, maintenir l'intégratione et la cohérence de la connaissance, amélioration de l'apprentissage et la formation d'abstraction.
 
@@ -103,10 +135,15 @@ Alternance entre interaction active et introspection passive.
 Détails du projet Dream.
 Détails des différents objectifs.
 Description des différentes waves.
+Le projet DREAM est scindé en 13 étapes, appelées \textit{waves} dont la liste est donnée en annexe. 
 
 Au terme de ce projet, les différents travaux de recherche des différents membres ont vocation à s'imbriquer les uns avec les autres dans le but de fournir un système global, allant de la détection et le suivi d'objet, à l'apprentissage d'affordances en passant par l'apprentissage de lancers de balle.
 
 La Coruna : travaux sur les motivations extrinsèques.
+
+Plusieurs expériences sont prévues afin de valider les travaux effectués. La première consiste en un robot avec un bras. Le robot doit placer différents objets dans une zone particulière ou presser des boutons et manipuler des leviers. La deuxième expérience de validation consiste à collecter des balles.
+
+Finalement, pluisieurs résultats sont attendus à l'issue de ce projet. Domaine de la robotique : de nouveaux frameworks pour le boostrapping cognitif, qui s'appuie sur des algorithmes évolutionnaires, avec une alternance entre des phases actives et passives (jour/nuit) et avec des connaissances approfondies en psychologie et neurosciences. Du point de vue des neurosciences, de nouveaux modèles pour la restructuration de connaissance et le bootstrapping cognitif.
 
 \subsection{\'Etat de l'art}
 
@@ -169,7 +206,7 @@ Une seconde approche est présentée dans dans \cite{Maestre2015} dans lequel Ma
 
 %% Intrinsic motivations
 \subsubsection{Intrinsic motivations}
-Une troisième approche réside dans les motivations intrinsèques. Ce concept a été décrit par Ryan et Deci, puis par Hull et plus tard formalisé en modèles computationnels par Oudeyer et Kaplan dans \cite{10.3389/neuro.12.006.2007}. Les motivations intrinsèques permettent d'explorer progressivement l'environnement en favorisant une spécialisation progressive des <modules>. Ce concept est utilisé en robotique et spécifiquement en robotique développementale.
+Une troisième approche réside dans les motivations intrinsèques. Ce concept a été décrit par Ryan et Deci, puis par Hull et plus tard formalisé en modèles computationnels par Oudeyer et Kaplan dans \cite{10.3389/neuro.12.006.2007}. Les motivations intrinsèques permettent d'explorer progressivement l'environnement en favorisant une spécialisation progressive des <modules>. La curiosité est davantage favorisée au profit de la recherche de la performance. Ce concept est utilisé en robotique et spécifiquement en robotique développementale.
 
 TODO : Définition de motivations intrinsèques, extrinsèques, internes et externes. Equivalent à la Curiosité.
 
@@ -424,6 +461,13 @@ La première étape consiste donc en un babillage. Concrétement, la position de
 % The best parameters found in the previous stage are used for pushing the different object into the goal area.
 
 
+Les effets sont réalisés relativement au repère lié à l'objet.
+
+Premier problème : position de l'end effector. En effet, en fonction de la position de la zone cible à atteindre, les effets seront différents ainsi que les faces/points de contacts d'où initier les effets. \'A chaque effet est associé un point de contact dans le repère de l'objet.
+
+Deuxième problème : l'objectif visé n'est pas de pousser simplement un objet jusqu'à une zone finale, mais d'effectuer une geste avec une vélocité élevé afin de pousser fortement l'objet jusqu'à la zone inacessible pour le bras du robot. Utilisation de Quality Diversity pour effectuer le babillage concernant la vélocité.
+
+
 \section{Discussion}
 % \epigraph{A computer would deserve to be called intelligent if it could deceive a human into believing that it was human.}{\textit{Alan Turing}}
 
@@ -431,11 +475,62 @@ La première étape consiste donc en un babillage. Concrétement, la position de
 
 Plusieurs axes d'améliorations peuvent être proposés. Durant ce stage, nous avons testé l'algorithme présenté ci-dessus avec un seul algorithme de clustering, \textit{Mean Shift}. Le premier axe d'amélioration consisterait à tester davantage d'algorithmes de clustering, tels qu'\textit{Affinity Propagation}, \textit{Birch} ou \textit{DBSCAN}. Un second axe d'amélioration pourrait être de tester l'algorithme avec des tâches plus complexes.
 
+L'algorithme décrit dans ce mémoire a été utilisé pour une expérience réalisée en collaboration avec UDC et ISIR en vue du de la réunion d'évaluation du projet qui se tient mi-septembre. Cette expérience consiste à faire en sorte que le robot puisse atteindre différentes zones matérialisées par des zones RFID. Utilisation du Reinforcement Learning.
+
 \section{Conclusion}
 
 Ce stage de fin d'études de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale et ce qu'il implique, après la brève introduction que nous avons eu durant le semestre de M2 à Lyon. Ce domaine de recherche est fascinant et très intéressant dans la mesure où les chercheurs tendent à créer des robots qui pourraient boostrap from almost no knowledge. Le lien étroit entre neurosciences et spécialement neurosciences cognitives permet d'implémenter des modèles présent chez l'être humain.
 
-% \section*{Annexe}
+\section*{Annexe}
+
+Liste des différentes waves
+
+\begin{tabular}{|l|c|r|}
+  \hline
+  No & Requirements 2 & Partners \\
+  \hline
+  W1 & Babbling & UPMC \\
+  W2 & Saliency Learning & UPMC \\
+  W2 & Saliency Learning & UPMC \\
+  W3 & Object Babbling & UPMC \\
+  W4 & Object Interaction Babbling & UPMC \\
+  W5 & Object Interaction discretization & UPMC \\
+  W6a & End to End policy pre-training & QMUL \\
+  W6b & End to End policy fine tuning & QMUL \\
+  W7 & Feature learning & Armines \\
+  W8 & Feature Based Reinforcement Learning & Armines \\
+  W9 & Policy-based exploration & Armines \\
+  W10 & Contextual Policy learning & UPMC \\
+  W11 & Model learning & UDC \\
+  W12 & Value function learning & UDC \\
+  W13 & Policy modularization & QMUL \\
+  \hline
+\end{tabular}
+
+Liste des différentes working packages
+
+\begin{tabular}{|l|c|r|}
+  \hline
+  No & Requirements 2 & Partners \\
+  \hline
+  W1 & Babbling & UPMC \\
+  W2 & Saliency Learning & UPMC \\
+  W2 & Saliency Learning & UPMC \\
+  W3 & Object Babbling & UPMC \\
+  W4 & Object Interaction Babbling & UPMC \\
+  W5 & Object Interaction discretization & UPMC \\
+  W6a & End to End policy pre-training & QMUL \\
+  W6b & End to End policy fine tuning & QMUL \\
+  W7 & Feature learning & Armines \\
+  W8 & Feature Based Reinforcement Learning & Armines \\
+  W9 & Policy-based exploration & Armines \\
+  W10 & Contextual Policy learning & UPMC \\
+  W11 & Model learning & UDC \\
+  W12 & Value function learning & UDC \\
+  W13 & Policy modularization & QMUL \\
+  \hline
+\end{tabular}
+
 % % \addcontentsline{toc}{chapter}{Annex}
 %
 % % \begin{tabular}{|l|c|r|}
