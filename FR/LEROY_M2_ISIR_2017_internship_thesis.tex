@@ -17,6 +17,7 @@
 \usepackage[parfill]{parskip}
 \usepackage{wrapfig}
 \usepackage[labelfont=bf]{caption}
+\usepackage{lettrine}
 
 \usetikzlibrary{arrows,shapes,positioning,mindmap,trees,automata}
 
@@ -36,7 +37,7 @@
    Département Informatique\\
    Encadrants : Stéphane \textsc{Doncieux} et Alexandre \textsc{Coninx}}
 
-\institute{Institut des Systèmes Intelligents et de Robotique\\
+\institute{Institut des Systèmes Intelligents et de Robotique, France\\
 Université Claude Bernard Lyon 1, France}
   % Put your university logo here if you wish.
   %  \begin{center}
@@ -63,7 +64,7 @@ Université Claude Bernard Lyon 1, France}
 \section*{Remerciements}
 % \addcontentsline{toc}{chapter}{Acknowledgement}
 
-Mon stage de 6 mois au sein de l'équipe AMAC à l'ISIR fût une formidable expérience. Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leur support et les nombreux conseils avisés qu'ils m'ont donnés. En effet, bénéficier de leur expérience et savoirs a été un véritable atout pour mener à bien ce stage, notamment pour surmonter les nombreux défis auxquels j'ai été confrontés.
+\lettrine{M}{on} stage de 6 mois au sein de l'équipe AMAC à l'ISIR fût une formidable expérience. Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leur support et les nombreux conseils avisés qu'ils m'ont donnés. En effet, bénéficier de leur expérience et savoirs a été un véritable atout pour mener à bien ce stage, notamment pour surmonter les nombreux défis auxquels j'ai été confrontés.
 
 L'ISIR est un excellent laboratoires de robotique en France et avoir la possibilité d'y faire un stage a été une extraordinaire opportunité, notamment parce que j'ai pu travailler sur un domaine passionnant et relativement jeune : la robotique développementale. Par ailleurs, cette immersion dans un laboratoire de recherche m'a donné l'opportunité de découvrir davantage le monde de la recherche.
 
@@ -75,7 +76,6 @@ D'autre part, reprendre des études en septembre 2016 après avoir travaillé pl
 
 % \epigraph{If I have seen further, it is by standing on the shoulders of giants.}{\textit{Isaac Newton}}
 \section{Introduction}
-
 
 % 1- Une accroche : une citation, un évènement d'actualité, une observation, un extrait d'entretien, une statistique, etc.
 
@@ -90,7 +90,6 @@ D'autre part, reprendre des études en septembre 2016 après avoir travaillé pl
 % 5- Annonce du plan : selon quelles étapes allez-vous répondre aux questions formulées en problématique ? Qu'allez-vous (dé)montrer dans chacune de vos parties ?
 
 
-
  \begin{quotation}
   \textit{Artificial intelligence is the science of making machines do things that would require intelligence if done by men.} Marvin Minsky
  \end{quotation}
@@ -103,19 +102,19 @@ D'autre part, reprendre des études en septembre 2016 après avoir travaillé pl
 % – Elle s’ach`eve sur une pr´esentation claire du plan adopt´e pour la suite du corps du
 % m´emoire.
  
-Dans le cadre de mon stage, je souhaitais découvrir davantage le domaine de la robotique développementale découvert durant mon semestre de cours à l'Université de Lyon-1. Mes recherches de stage ainsi que les conseils avisés de mes professeurs m'ont permis de concentrer celles-ci sur un nombre restreint de laboratoires, dont l'ISIR.
+\lettrine{D}{ans} le cadre de mon stage, je souhaitais découvrir davantage le domaine de la robotique développementale découvert durant mon semestre de cours à l'Université de Lyon-1. Mes recherches de stage ainsi que les conseils avisés de mes professeurs m'ont permis de concentrer celles-ci sur un nombre restreint de laboratoires, dont l'ISIR.
 
 La robotique moderne est apparue au début du siècle dernier et englobe la robotique industrielle, médicale, militaire et domestique. Si l'on s'y rapporte, la robotique développementale constitue un domaine de recherche relativement jeune dans la mesure où son émergence date d'une quinzaine d'années. La robotique développementale est issue principalement de la robotique mais tire également ses racines des neurosciences cognitives.
 Apprentissage autonome, généralisation.
-Plus efficace de créer un robot qui apprend qu'un robot auquel on apprend beaucoup de choses.
+L'idée sous-jacente est qu'il est plus efficace de créer un robot qui apprend de façon autonome plutôt qu'un robot auquel on donne une connaissance exhaustive de son environnement. Par nature, l'environnement auquel sera confronté un robot évolue en permanence. En effet, de nouveaux modèles d'objets et de nouveaux objets apparaissent au quotidien et l'Homme apprend à s'en servir sans qu'il soit besoin, généralement, de lui expliquer comment faire.
 Cf. wikipedia
 
-Ce mémoire de stage est divisé de la façon suivante : tout d'abord, nous présentons le laboratoire et ses domaines de recherche, puis nous abordons le projet DREAM dans le cadre duquel notre stage a été réalisé. Une section est ensuite consacrée à l'état de l'art en matière de robotique développementale. Le coeur de notre travail est présenté dans les sections 4 et 5 avec l'approche théorique et l'expérimentation de validation associée.  Enfin, nous abordons les perspectives et travaux futurs dans la section suivante avant de conclure dans la dernière partie.
+Ce mémoire de stage est divisé de la façon suivante : tout d'abord, nous présentons le laboratoire et ses domaines de recherche, puis nous abordons le projet DREAM dans le cadre duquel notre stage a été réalisé. Une section est ensuite consacrée à l'état de l'art en matière de robotique développementale. Le coeur de notre travail est présenté dans les sections 4 et 5 avec l'approche théorique et l'expérimentation de validation associée. Enfin, nous abordons les perspectives et travaux futurs dans la section suivante avant de conclure dans la dernière partie.
 
 
 \section{Le laboratoire}
 
-L'ISIR\footnote{http://www.isir.upmc.fr} (Institut des Systèmes Intelligents et de Robotique) est un laboratoire de recherche multi-disciplinaire créé en 2007. C'est une Unité Mixte de Recherche entre l'UPMC et le CNRS, localisée sur le campus de Jussieu. Il compte environ 130 personnes et rassemble des chercheurs de différents domaines : Sciences de l’Ingénieur et de l’Information ainsi que des Sciences du Vivant (sciences du mouvement, neurosciences et sciences cognitives)  incluant également des personnels hospitalo-universitaires. Par ailleurs, l'ISIR est membre du réseau national Robotex\footnote{http://equipex-robotex.fr} qui regroupe des plates-formes expérimentales de robotique en France et ses équipes sont actives au sein du GDR Robotique.
+\lettrine{L}{'ISIR\footnote{http://www.isir.upmc.fr}} (Institut des Systèmes Intelligents et de Robotique) est un laboratoire de recherche multi-disciplinaire créé en 2007. C'est une Unité Mixte de Recherche entre l'UPMC et le CNRS, localisée sur le campus de Jussieu. Il compte environ 130 personnes et rassemble des chercheurs de différents domaines : Sciences de l’Ingénieur et de l’Information ainsi que des Sciences du Vivant (sciences du mouvement, neurosciences et sciences cognitives)  incluant également des personnels hospitalo-universitaires. Par ailleurs, l'ISIR est membre du réseau national Robotex\footnote{http://equipex-robotex.fr} qui regroupe des plates-formes expérimentales de robotique en France et ses équipes sont actives au sein du GDR Robotique.
 
 Les travaux de recherche à l'ISIR sont principalement centrés sur la modélisation et l'analyse des systèmes dynamiques artificiels et naturels, la conception optimale de systèmes robotiques interactifs, la commande des systèmes interactifs, la conception et le traitement du signal de systèmes perceptifs multimodaux, la modélisation des interactions homme - système, les modèles neuro-computationnels pour l’autonomie, l'apprentissage artificielle, l'adaptation bio-inspirée des systèmes et de leur commande. Dans cette perspective, le laboratoire est consitué en 4 équipes~:
 \begin{itemize}
@@ -131,7 +130,8 @@ J'ai réalisé mon stage de fin d'études au sein de l'équipe AMAC, dirigée pa
 
 
 \section{Le projet DREAM}
-Mon stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}. DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit \textit{Restructuration différée de l'expérience dans les machines autonomes} est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet a pour objectif d'incorporer un processus de sommeil au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
+
+\lettrine{M}{on} stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}. DREAM (Deferred Restructuring of Experience in Autonomous Machines) soit \textit{Restructuration différée de l'expérience dans les machines autonomes} est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne. Ce projet a pour objectif d'incorporer un processus de sommeil au sein d'une architecture cognitive, dans le but de consolider leur expérience et donc améliorer leur capacité à apprendre et à s'adapter.
 
 Ce projet implique 5 partenaires académiques: UMPC/CNRS (coordinateur), ENSTA ParisTech, Universidade da Coruña, Vrije Universiteit Amsterdam et Queen Mary University of London. Ces différents acteurs ont différents rôles au sein du projet DREAM.
 
@@ -160,7 +160,7 @@ development : alternating between
 • passive introspection over past
 events (nighttime and dreams)
 
-Le projet DREAM comprend 4 objectifs : (1) Faire évoluer et décompoer de nouvelles valeurs et motivations, (2) Restructurer les représentations et modèles, (3) Consolider la connaissance et (4) expand la connaissance à travers les interactions sociales.
+Le projet DREAM comprend 4 objectifs : (1) Faire évoluer et décomposer de nouvelles valeurs et motivations, (2) restructurer les représentations et modèles, (3) consolider la connaissance et (4) étendre la connaissance à travers les interactions sociales.
 
 
 
@@ -189,7 +189,7 @@ Les résultats préliminaires ont montré que l'on pouvait observer une baisse d
 	\centering
 	\includegraphics[width=.7\textwidth]{figures/project_structure.png}
 	\label{fig:dream}
-	\caption{Baxter robot}
+	\caption{Structure du projet Dream}
 \end{figure}
 
 Accumuler de la connaissance nécessite des processus de consolidation afin d'éviter d'être submergé par les informations. Le sommeil crucial pour la restructuration des représentations, maintenir l'intégratione et la cohérence de la connaissance, amélioration de l'apprentissage et la formation d'abstraction.
@@ -221,8 +221,6 @@ Finalement, pluisieurs résultats sont attendus à l'issue de ce projet. Domaine
 
 \section{\'Etat de l'art}
 
-% Medias are nowadays talking about smart robots for tomorrow or the day after tomorrow. Such mass medias are explaining that people would find in their house, in a very near future,  a robot able to cook for you when you are short in time, mow the lawn and take care of elder people. However the path which conducts to these intelligent machines is still long and strewn with pitfalls. Several challenges have to be adressed before people interact with those robots as they do with other human people. Among these challenges, it is possible to cite movements learning.
-
 % Developmental robotics
 % \subsection{Robotique développementale}
 % La robotique moderne est apparue au début du siècle dernier et englobe la robotique industrielle, médicale, militaire et domestique. Si l'on s'y rapporte, la robotique développementale constitue un domaine de recherche relativement jeune dans la mesure où son émergence date d'une quinzaine d'années. La robotique développementale est issue principalement de la robotique mais tire également ses racines des neurosciences cognitives.
@@ -238,7 +236,8 @@ Finalement, pluisieurs résultats sont attendus à l'issue de ce projet. Domaine
 % Affordances are objective, real and physical.
 \subsection{Affordances}
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}
+% \begin{wrapfigure}{r}{0.5\textwidth}
   \centering
   \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,
                   thick,main node/.style={circle,draw,minimum size=17mm,font=\Medium\bfseries}]
@@ -253,9 +252,10 @@ Finalement, pluisieurs résultats sont attendus à l'issue de ce projet. Domaine
   \end{tikzpicture}
 
   \label{fig:affordances}
-	\caption{Relation entre Objets, Actions et Effets.}
+	\caption{Affordances : relation entre \textbf{Objets}, \textbf{Actions} et \textbf{Effets}.}
 
-\end{wrapfigure}
+\end{figure}
+% \end{wrapfigure}
 
 L'apprentissage des affordances est une étape cruciale dans l'approche de la robotique développementale. Le terme a été défini dans \cite{opac-b1085639} comme \textit{it offers the animal, what it provides or furnishes}. L'idée principale derrière ce terme est d'être capable de découvrir les différentes actions qui peuvent être réalisées sur un objet, en considérant les capacités disponibles. Cette définition établit une relation forte entre les objets, les actions et les effets (see Figure \ref{fig:affordances}). Les affordances permettent de découvrir les différentes actions qui peuvent être réalisées sur un objet en fonction des capacités de l'acteur. Par exemple, pour un robot avec des pinces, une boîte offre les affordances \textit{movable} et \textit{levable}, parmi d'autres. Les affordances sont capitables pour réaliser des actions, c'est-à-dire que le robot peut utiliser sa connaissance des affordances pour choisir la prochaine action à effectuer sur un objet pour accomplir une tâche. Par ailleurs, les affordances peuvent également être utilisées pour identifier ou reproduire des actions, telles qu'expliqué dans∼\cite{4399517}.
 
@@ -265,8 +265,9 @@ L'apprentissage des affordances est une étape cruciale dans l'approche de la ro
 
 %% Boostrapping
 \subsection{Boostrapping}
-Meltzoff et al. explained in \cite{EDP:EDP157} that infants do not know a priori what muscle movements achieve a particular state of organ relations. The authors call that process body babbling, directly inspired from babbling when infants experiment vocal sounds. In short, they explain that infants do repeated moves as a game. Eventually, after a certain amount of time and repetitions, infants would learn the relation between the moves they perform and theirs effects. That concept was reused in developmental robotics. Indeed, for a robot, learning affordances requires to interact with the environment throught an exploration stage, which corresponds to babbling. Several heuristics exist to perform that exploration.
+% Meltzoff et al. explained in \cite{EDP:EDP157} that infants do not know a priori what muscle movements achieve a particular state of organ relations. The authors call that process body babbling, directly inspired from babbling when infants experiment vocal sounds. In short, they explain that infants do repeated moves as a game. Eventually, after a certain amount of time and repetitions, infants would learn the relation between the moves they perform and theirs effects. That concept was reused in developmental robotics. Indeed, for a robot, learning affordances requires to interact with the environment throught an exploration stage, which corresponds to babbling. Several heuristics exist to perform that exploration.
 
+Meltzoff et al. expliquent in \cite{EDP:EDP157} que les enfants ne savent pas à priori quelques mouvements musculaires permettent d'atteindre un état particulier. Les auteurs appellent ceci le babillage du corps, directement inspiré du babillage lorsque les enfants expérimentent des sons vocaux. Ils expliquent que les enfants font des mouvements répétés, comme dans un jeu. Finalement, après un certain temps et de répétitions, les enfants apprennent la relation entre le mouvemements qu'ils effectuent et leurs effets. Ce concept a été réutilisé dans la robotique développementale. En effet, pour un robot, apprendre des affordances nécessite d'intéragir avec l'environnement à travers une phase d'exploration, ce qui correspond au babillage. Différentes heuristiques existent pour effectuer cette exploration.
 
 
 
@@ -315,13 +316,55 @@ Au delà des affordances, des recherches prometteuses se concentrent sur la mani
 \subsection{Réseaux bayésiens}
 Une fois que le babillage sensorimoteur a été réalisé, les relations entre les objets, actions et effets nécessitent d'être modélisées. Les réseaux bayésiens constituent une méthode pour réaliser cela. Ce sont des modèles probablistes qui représentent les relations entre leurs variables. Dans \cite{4456755}, Montesano et al. présentent un modèle de réseau bayésien qui permet d'apprendre des affordances concernant des objets.
 
-Our work focused on improving the paper of \cite{Ugur2011}. In that paper, Ugur \textit{et al}.
-described a system that allows a robot to learn goal emulation by using learnt affordances. In order to that, the robot follows an observation stage then an imitation stage.
+% Our work focused on improving the paper of \cite{Ugur2011}. In that paper, Ugur \textit{et al}.
+% described a system that allows a robot to learn goal emulation by using learnt affordances. In order to that, the robot follows an observation stage then an imitation stage.
 
 - bootstrap object-oriented behavior
 - discover object in an unknown environment
 
 
+\subsection{Algorithmes de clusterisation}
+
+\cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} \cite{Tan2005} et \cite{Sajana2016}
+Le clustering ou partitionnement de données fait partie du domaine de l'analyse de données. Cette technique a été développée pour traiter des jeux de données trop massifs et trop complexes pour être traités manuellement. Grouper un ensemble d'objets de telle manière à ce que les objets présents au sein d'un même cluster soit plus similaire aux autres présents dans les autres clusters. Éléments au sein d'un cluster doivent être le plus similaire possible. En revanche, les éléments de clusters différents doivent être le moins similaire possible. Considéré comme la plus importante question en apprentissage non supervisé \cite{Xu2015}, c'est-à-dire qu'il n'existe pas de connaissance préalable sur la classification des objets.
+
+Différentes notions de mesure de distance (dissimilarité) existent :
+
+\begin{enumerate}
+  \item Distance de Minkowski
+  \item Distance euclidienne
+  \item Distance cosine
+\end{enumerate}
+
+Différentes typologies de clustering existent : 
+
+\begin{enumerate}
+  \item Partition : 
+  \item Connectivité (hiérarchique) : for example, hierarchical clustering builds models based on distance connectivity.
+  \item Centroid : for example, the k-means algorithm represents each cluster by a single mean vector.
+  \item Distribution : clusters are modeled using statistical distributions, such as multivariate normal distributions used by the expectation-maximization algorithm.
+  \item Densité : un cluster est une région dense d'objets entourée d'une région de faible densité. Les éléments présents dans les zones de faible densité sont considérés comme du bruit. (H)DBSCAN, OPTICS.
+  \item Groupe : some algorithms do not provide a refined model for their results and just provide the grouping information.
+  \item Graphe : a clique, that is, a subset of nodes in a graph such that every two nodes in the subset are connected by an edge can be considered as a prototypical form of cluster. Relaxations of the complete connectivity requirement (a fraction of the edges can be missing) are known as quasi-cliques, as in the HCS clustering algorithm.
+\end{enumerate}
+
+\subsection{Algorithmes génétiques}
+
+EA
+
+nécessite le codage de solutions potentielles au problème posé (appelées individus)
+Le travail s'effectue en parallèle sur une population d’individus
+évalue l’efficacité de chaque individu (grâce à une fonction de fitness) et sélectionne les plus performants
+génération de nouveaux individus à l’aide d’opérateurs d’exploration de l’espace de recherche : croisement : création d’un nouvel individu à partir de plusieurs ; mutation : modification aléatoire d’une partie de l’individu
+
+
+Algorithme génétique multiobjectif
+Plusieurs objectifs dans un problème -> ensemble de solutions optimales
+NSGA-II, version améliorée de NSGA.
+Front de Pareto, ensemble de solutions optimales, différents arbitrages
+principe de l'élitisme : garde les meilleurs individus parmi les parents et les enfants
+favorise les solutions non dominées
+utilise une variété explicite de solutions
 
 
 % \subsection{Related work}
@@ -349,15 +392,23 @@ described a system that allows a robot to learn goal emulation by using learnt a
 
 \subsection{Environnement}
  
-\begin{wrapfigure}{r}{0.45\textwidth}
+% \begin{wrapfigure}{r}{0.45\textwidth}
+%   \begin{center}
+%     \includegraphics[angle=-90, width=0.4\textwidth]{figures/baxter}
+%   \end{center}
+%   \caption{Le robot Baxter de Rethink Robotics utilisé à l'ISIR.}
+%   \label{fig:baxter}
+% \end{wrapfigure}
+
+\begin{figure}
   \begin{center}
     \includegraphics[angle=-90, width=0.4\textwidth]{figures/baxter}
   \end{center}
   \caption{Le robot Baxter de Rethink Robotics utilisé à l'ISIR.}
   \label{fig:baxter}
-\end{wrapfigure}
+\end{figure}
 
-Afin de développer des algorithmes d'Intelligence Artificielle dans le domaine de la robotique, il est nécessaire de disposer d'une multitude d'outils tels qu'un simulateur et un framework pour communiquer avec les différents composants, en plus de disposer, tout naturellement, d'un robot.
+\lettrine{A}{fin} de développer des algorithmes d'Intelligence Artificielle dans le domaine de la robotique, il est nécessaire de disposer d'une multitude d'outils tels qu'un simulateur et un framework pour communiquer avec les différents composants, en plus de disposer, tout naturellement, d'un robot.
 
 Dans le cadre du projet DREAM, l'ISIR bénéficie du robot Baxter\footnote{http://www.rethinkrobotics.com/baxter/tech-specs/} (voir figure \ref{fig:baxter}). C'est un robot développé par Rethink Robotic et utilisé à la fois à des fin industrielles et de recherche. Ce robot antropormorphique à deux bras dispose de deux fois sept degrés de liberté et de multiples senseurs\footnote{http://sdk.rethinkrobotics.com/wiki/Hardware\_Specifications}.
 
@@ -402,13 +453,21 @@ Notre travail se base en partie sur les travaux d'un doctorant, intégré dans l
 % 	\label{fig:trajectories}
 % \end{figure}
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+% \begin{wrapfigure}{r}{0.5\textwidth}
+%   \begin{center}
+%     \includegraphics[width=0.48\textwidth]{figures/trajectories}
+%   \end{center}
+%   \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chqaue cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
+%   \label{fig:trajectories}
+% \end{wrapfigure}
+
+\begin{figure}
   \begin{center}
     \includegraphics[width=0.48\textwidth]{figures/trajectories}
   \end{center}
   \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chqaue cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
   \label{fig:trajectories}
-\end{wrapfigure}
+\end{figure}
 
 En raison de la nécessesité de généraliser, il n'est pas possible de laisser une telle valeur arbitraire. Pour pallier à ce problème, la première étape de notre stage a porté sur l'accomplissement d'une discrétisation adaptative de l'environnement. L'idée générale est de laisser le robot découvrir lui-même les différentes actions réalisables sans en spécifier le nombre. Pour arriver à cela, le clustering est utilisé afin de distinguer les différentes actions. 
 
@@ -612,7 +671,7 @@ Le second problème provient du fait que les différents mouvements réalisés p
 Le troisième problème a trait avec la tâche elle-même. En effet, dans un second temps de l'expérimentation, l'objet doit être poussé dans une zone inacessible au bras du robot. Cela signifie que l'objectif visé n'est pas simplement de pousser  un objet jusqu'à une zone particulière, mais d'effectuer un geste avec une vélocité élevée afin de pousser fortement l'objet jusqu'à cette zone. Utilisation de Quality Diversity pour effectuer le babillage concernant la vélocité.
 
 \subsubsection{Résultats}
-Les premiers résultats provenant de cette expérimentation montrent que le robot est tout à fait capable de pousser un objet vers une zone particulière (accessible par le robot) en se basant sur la discrétisation d'effets obtenue par babillage sensorimoteur. Une vidéo est disponible en ligne : youtu.be/test
+Les premiers résultats provenant de cette expérimentation montrent que le robot est tout à fait capable de pousser un objet vers une zone particulière (accessible par le robot) en se basant sur la discrétisation d'effets obtenue par babillage sensorimoteur. Une vidéo est disponible en ligne : https://youtu.be/bKCBSDx8L1I
 
 
 
@@ -631,9 +690,11 @@ Les premiers résultats provenant de cette expérimentation montrent que le robo
 
 \section{Travaux futurs et perspectives}
 
-Plusieurs axes d'améliorations peuvent être proposés. Durant ce stage, nous avons testé l'algorithme présenté ci-dessus avec un seul algorithme de clustering, \textit{Mean Shift}. Le premier axe d'amélioration consisterait à tester davantage d'algorithmes de clustering, tels qu'\textit{Affinity Propagation}, \textit{Birch} ou \textit{DBSCAN}. Un second axe d'amélioration pourrait être de tester l'algorithme avec des tâches plus complexes.
+\lettrine{P}{lusieurs} axes d'améliorations peuvent être proposés. Durant ce stage, nous avons testé l'algorithme présenté ci-dessus avec un seul algorithme de clustering, \textit{Mean Shift}. Le premier axe d'amélioration consisterait à tester davantage d'algorithmes de clustering, tels qu'\textit{Affinity Propagation}, \textit{Birch} ou \textit{DBSCAN}. Un second axe d'amélioration pourrait être de tester l'algorithme avec des tâches plus complexes.
 
-Concernant l'expérience utilisant la clusterisation d'effets, il pourrait être pertinent de la réaliser en utilisant d'autres objets ayant différentes propriétés : un cylindre et un cône. Le cylindre a pour particularité de rouler sur une grande distance rectiligne lorsqu'il est poussé depuis sa face courbe alors que ce mouvement est plus réduit lorsqu'il est poussé depuis l'une de ses bases. A l'inverse, un cône décrit une courbe s'il est poussé depuis sa face courbe et nécessite d'être poussé depuis sa base pour parcourir une grande distance rectiligne. Un babillage avec ces deux objets pourrait permettre au robot d'apprendre à repositionner les objets afin d'exposer leur face appropriée aux différentes actions (face courbe pour le cylindre et base pour le cône).
+Concernant l'expérience utilisant la clusterisation d'effets, il pourrait être pertinent de la réaliser en utilisant d'autres objets ayant différentes propriétés : un cylindre et un cône. Le cylindre a pour particularité de rouler sur une grande distance rectiligne lorsqu'il est poussé depuis sa face courbe alors que ce mouvement est plus réduit lorsqu'il est poussé depuis l'une de ses bases. À l'inverse, un cône décrit une courbe s'il est poussé depuis sa face courbe et nécessite d'être poussé depuis sa base pour parcourir une grande distance rectiligne. Un babillage avec ces deux objets pourrait permettre au robot d'apprendre à repositionner les objets afin d'exposer leur face appropriée aux différentes actions (face courbe pour le cylindre et base pour le cône).
+
+Expérience pour pousser l'objet dans une zone hors de portée du bras du robot. Requiert l'utilisation de Quality Diveristy pour générer un ensemble complet de déplacements. Cet algorithme est utilisé afin de générer des trajectoires permettant au Baxter de lancer une balle dans un seau. 
 
 L'algorithme décrit dans ce mémoire a été utilisé pour une expérience réalisée en collaboration avec UDC et ISIR en vue du de la réunion d'évaluation du projet qui se tient mi-septembre. Cette expérience consiste à faire en sorte que le robot puisse atteindre différentes zones matérialisées par des zones RFID. Utilisation du Reinforcement Learning.
 
@@ -644,7 +705,7 @@ L'algorithme décrit dans ce mémoire a été utilisé pour une expérience réa
 
 \section{Conclusion}
 
-Ce stage de fin d'études de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale et ce qu'il implique, après la brève introduction que nous avons eu durant le semestre de M2 à Lyon. Ce domaine de recherche est fascinant et très intéressant dans la mesure où les chercheurs tendent à créer des robots qui pourraient boostrap from almost no knowledge. Le lien étroit entre neurosciences et spécialement neurosciences cognitives permet d'implémenter des modèles présent chez l'être humain.
+\lettrine{C}{e} stage de fin d'études de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale et ce qu'il implique, après la brève introduction que nous avons eu durant le semestre de M2 à Lyon. Ce domaine de recherche est fascinant et très intéressant dans la mesure où les chercheurs tendent à créer des robots qui pourraient boostrap from almost no knowledge. Le lien étroit entre neurosciences et spécialement neurosciences cognitives permet d'implémenter des modèles présent chez l'être humain.
 
 Le sujet abordé dans ce stage pointe la difficulté que représente la conception d'un robot autonome et capable d'apprendre en permanence dans son environnement.
 
