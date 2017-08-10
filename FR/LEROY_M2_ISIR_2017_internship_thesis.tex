@@ -14,13 +14,23 @@
 \usepackage{wrapfig}
 \usepackage[labelfont=bf]{caption}
 \usepackage{lettrine}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
 
+\pagestyle{plain}
+
+\makeatletter
+\renewcommand{\fnum@figure}{\figurename~\thefigure~}
+\makeatother
 
 \usetikzlibrary{arrows,shapes,positioning,mindmap,trees,automata}
 
 \newcommand{\textoverline}[1]{$\overline{\mbox{#1}}$}
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\cfoot{Page \thepage}
+
+
 \begin{document}
 
 \title{From motion effects to affordances: Bayesian learning of high-level actions}
@@ -46,14 +56,10 @@ Université Claude Bernard Lyon 1, France}
 
 \textbf{Keywords:} Developmental Robotics, Affordance, Effect clusterization
 
-% \tableofcontents
 
 
 
-
-
-\section*{Remerciements}
-% \addcontentsline{toc}{chapter}{Acknowledgement}
+\section*{Remerciements - OK}
 
 \lettrine{M}{on} stage de 6 mois au sein de l'équipe AMAC à l'ISIR a été une formidable expérience.
 Je voudrai remercier Stéphane Doncieux, Alexandre Coninx et Carlos Maestre pour leurs nombreux conseils avisés et pour les nombreux moments passés à échanger tout au long de mon stage.
@@ -68,8 +74,8 @@ J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master~2.
 
 
 \newpage
-% \epigraph{If I have seen further, it is by standing on the shoulders of giants.}{\textit{Isaac Newton}}
-\section{Introduction}
+
+\section{Introduction - OK}
 
 % 1- Une accroche : une citation, un évènement d'actualité, une observation, un extrait d'entretien, une statistique, etc.
 
@@ -99,50 +105,59 @@ J'allais avoir 30 ans et je me demandais si j'allais réussir dans ce Master~2.
 \lettrine{D}{ans} le cadre de mon stage, je souhaitais découvrir davantage le domaine de la robotique développementale découvert durant mon semestre de cours à l'Université de Lyon-1.
 Mes recherches de stage ainsi que les conseils avisés de mes professeurs m'ont permis de concentrer celles-ci sur un nombre restreint de laboratoires, dont l'ISIR.
 
+%OK
 La robotique moderne est apparue au début du siècle dernier et englobe la robotique industrielle, médicale, militaire et domestique.
 Si l'on s'y rapporte, la robotique développementale constitue un domaine de recherche relativement jeune dans la mesure où son émergence date d'une quinzaine d'années.
 La robotique développementale est issue principalement de la robotique mais tire également ses racines des neurosciences cognitives.
 
-
-L'environnement et les objets que côtoie les êtres humains ont des formes et des apparences très différentes.
+L'environnement et les objets que côtoient les êtres humains ont des formes et des apparences très différentes.
 Les robots, par nature, sont voués à être déployés dans le même environnement que le nôtre.
-Les êtres humains sont capable de reconnaître des objets et de classer des objets inconnus dans des catégories contenant des objets connus sans effort et très rapidement.
-L'idée sous-jacente est qu'il est plus efficace de créer un robot qui apprend de façon autonome plutôt qu'un robot auquel on donne une connaissance exhaustive de son environnement.
+Les êtres humains sont capable de reconnaître des objets, pour certains inconnus, et de les classer dans des catégories contenant des objets connus, et cela sans effort et très rapidement.
 l'Homme apprend à s'en servir sans qu'il soit besoin, généralement, de lui expliquer comment faire.
-Dans la mesure où l'environnement humain évolue au quotidien, il n'est pas possible de créer un robot avec une connaissance exhaustive des différents objets auxquels il pourrait être confronté.
+
+% Pas possible d'apprendre tout à un robot - OK
+Pour des raisons de coût (humain, matériel et en temps), il n'est pas possible de doter les robots d'une connaissance exhaustive de leur environnement et des différents objets qui le composent.
+En effet, l'environnement étant en perpétuelle évolution, cette exhaustivité nécessiterait une mise à jour à intervalle très régulier des connaisannces, incompatible avec le nombre très important de robots en usage dans les prochaines années et la diversité des environnements associés.
 Par conséquent, il est également impossible de prévoir tous les mouvements et actions nécessaires pour manipuler les objets qu'un robot peut rencontrer.
-L'idée derrière la robotique développementale est de doter les robots de leurs propres capacités cognitives.
-Cela permettrait de créer des robots dépassant les limites en terme de programmation.
 
-Apprendre de façon autonome à travers des observations et interactions sur l'environnement du robot les différentes actions possibles.
-Adapter ces actions aux différents objets.
-Interaction avec les objets importantes pour apprendre les affordances.
-Développer ses compétences cognitives dans les environnements ouverts pour éviter cela.
-Pouvoir prédire les conséquences de ses actions et planifier leurs comportements à partir de ces prédictions est un défi importnt and IA et robotique.
+% Compétences cognitives - OK
+Puisque qu'il n'est pas possible de concevoir des robots omniscients de leur environnement, la robotique développementale s'inspire des recherches menées en neurosciences pour doter les robots de leur propres capacités cognitives.
+L'objectif de celles-ci est de leur permettre d'apprendre de façon autonome à agir et interagir avec leur environnement.
+Ces nouvelles aptitudes cognitives doivent permettre de créer des robots dépassant les contraintes liées à la programmation des connaissances.
+Par ailleurs, les robots à venir devront pouvoir s'adapter aux changements et situations inconnues dans leur environnement.
+Pour cela, il est nécessaire que ces robots soient capable de construire d'autres connaissances au dessus de celles précédemment acquises.
 
+% Interaction avec l'environnement - OK
+L'apprentissage par un robot des actions réalisables se fait au travers des observations et interactions sur l'environnement.
+Les interactions avec différents objets et les observations sont importantes pour apprendre ce que l'on nomme les \textit{affordances}.
+D'autre part, connaître l'ensemble des actions possibles dans son environnement permet à un robot de pouvoir prédire les conséquences de ses actions.
+Cela lui permet également de planifier des actions pour atteindre un objectif défini.
 
-
+% Problématique - OK
 La problématique de mon stage s'intéressait à réaliser une discrétisation adaptative de l'environnement.
-Dans le système d'apprentissage des effets des mouvements actuellement développé, la discrétisation de l'environnement et des propriétés des objets est donnée par l'expérimentateur.
+Dans le système d'apprentissage des effets des mouvements actuellement développé et utilisé, la discrétisation de l'environnement et des propriétés des objets est donnée par l'expérimentateur.
 Afin de s'adapter à différents objets, cette discrétisation doit être apprise automatiquement par le système dans un sens qui permette que les propriétés pertinentes de chaque objet et de l'environnement soient représentées de façon adéquate pour le système d'apprentissage.
 
+% Plan - OK
 Ce rapport de stage est divisé de la façon suivante : tout d'abord, nous présentons le laboratoire et ses domaines de recherche, puis nous abordons le projet DREAM dans le cadre duquel notre stage a été réalisé.
 Une section est ensuite consacrée à l'état de l'art en matière de robotique développementale.
 Le coeur de notre travail est présenté dans les sections 4 et 5 avec l'approche théorique et l'expérimentation de validation associée.
 Enfin, nous abordons les perspectives et travaux futurs dans la section suivante avant de conclure dans la dernière partie.
 
 
-\section{Le laboratoire}
+\section{Le laboratoire - OK}
 
 \lettrine{L}{'ISIR}\footnote{http://www.isir.upmc.fr} (Institut des Systèmes Intelligents et de Robotique) est un laboratoire de recherche multi-disciplinaire créé en 2007.
 C'est une Unité Mixte de Recherche entre l'UPMC et le CNRS, localisée sur le campus de Jussieu.
 Il compte environ 130 personnes et rassemble des chercheurs de différents domaines : Sciences de l’Ingénieur et de l’Information ainsi que des Sciences du Vivant (sciences du mouvement, neurosciences et sciences cognitives) incluant également des personnels hospitalo-universitaires.
 Par ailleurs, l'ISIR est membre du réseau national Robotex\footnote{http://equipex-robotex.fr} qui regroupe des plates-formes expérimentales de robotique en France et ses équipes sont actives au sein du GDR Robotique.
 
-Les travaux de recherche à l'ISIR sont principalement centrés sur la modélisation et l'analyse des systèmes dynamiques artificiels et naturels, la conception optimale de systèmes robotiques interactifs, la commande des systèmes interactifs, la conception et le traitement du signal de systèmes perceptifs multimodaux, la modélisation des interactions Homme-Système, les modèles neuro-computationnels, l'apprentissage artificiel, l'adaptation bio-inspirée des systèmes et de leur commande. Dans cette perspective, le laboratoire est constitué en 4 équipes~:
+Les travaux de recherche à l'ISIR sont principalement centrés sur la modélisation et l'analyse des systèmes dynamiques artificiels et naturels, la conception optimale de systèmes robotiques interactifs, la commande des systèmes interactifs, la conception et le traitement du signal de systèmes perceptifs multimodaux, la modélisation des interactions Homme-Système, les modèles neuro-computationnels, l'apprentissage artificiel, l'adaptation bio-inspirée des systèmes et de leur commande. 
 
 Ses activités sont situées au cœur d’un certain nombre d’enjeux relatifs aux systèmes robotiques autonomes et/ou interactifs concernant notamment le comportement dynamique robuste et sûr des systèmes, la perception artificielle, les interactions multimodales, l’apprentissage et l’adaptation.
 Elles visent en particulier à développer de nouvelles approches en matière de conception et de commande des systèmes robotiques fertilisées par un dialogue permanent entre les sciences de l’ingénieur et de l’information, la biologie et les sciences cognitives.
+
+Dans cette perspective, le laboratoire est constitué en 4 équipes~:
 
 \begin{itemize}
 \item AGATHE (Assistance aux Gestes et Applications THErapeutiques) : conception de systèmes robotiques synergétiques en particulier pour le guidage des gestes dans des applications thérapeutiques ;
@@ -173,7 +188,7 @@ Paragraphe sur les publications de l'équipe ?
 
 \section{Le projet DREAM}
 
-\subsection{Présentation générale}
+\subsection{Présentation générale - TODO}
 
 \lettrine{M}{on} stage a été financé dans le cadre le projet DREAM\footnote{http://www.robotsthatdream.eu}.
 DREAM (Deferred Restructuring of Experience in Autonomous Machines), soit \textit{Restructuration différée de l'expérience dans les machines autonomes}, est un projet financé par le programme de recherche et d'innovation H2020 de l'Union Européenne.
@@ -211,7 +226,7 @@ Le sommeil crucial pour la restructuration des représentations, maintenir l'int
 L'objectif de DREAM est de permettra aux robots d'acquérir une compréhension ouverte de leur environnement au cours de longue période de temps.
 Cet objectif principal peut être décomposé en 4 sous-objectifs : (1) Faire évoluer et décomposer de nouvelles valeurs et motivations, (2) restructurer les représentations et modèles, (3) consolider la connaissance et (4) étendre la connaissance à travers les interactions sociales.
 
-Ce projet implique 5 partenaires académiques européens : 
+Ce projet implique 5 partenaires académiques européens ayant chacun des champs de compétences différents : 
 
 \begin{itemize}
   \item UMPC/CNRS (coordinateur) : representations évolutionnaires, algorithmes computationnels, exploration de compétences et neuroscience ;
@@ -221,7 +236,7 @@ Ce projet implique 5 partenaires académiques européens :
   \item VU Amsterdam : partage de la connaissance entre robots.
 \end{itemize}
 
-Les différents partenaires disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{http://en.wikipedia.org/wiki/Meka\_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{www.thymio.org/}, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com} ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
+Les différents partenaires disposent de 5 robots pour mener à bien ce projet : le robot Meka\footnote{http://en.wikipedia.org/wiki/Meka\_Robotics}, PR2 de Willow Garage, plusieurs Thymio-2\footnote{http://www.thymio.org/}, le bras robotique CrustCrawler\footnote{http://www.crustcrawler.com} ainsi que le robot Baxter de Rethink Robotics. La majorité des robots est présente au sein de l'ISIR.
 
 Finalement, plusieurs résultats sont attendus à l'issue de ce projet.
 Domaine de la robotique : de nouveaux frameworks pour le boostrapping cognitif, qui s'appuie sur des algorithmes évolutionnaires, avec une alternance entre des phases actives et passives (jour/nuit) et avec des connaissances approfondies en psychologie et neurosciences.
@@ -243,46 +258,44 @@ Le robot doit placer différents objets dans une zone particulière ou presser d
 	\caption{Structure du projet Dream}
 \end{figure}
 
-\subsection{Travaux de l'équipe AMAC}
+\subsection{Travaux de l'équipe AMAC au sein du projet DREAM - OK}
 
-Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (3 chercheurs, 2 post-doctorants, 3 doctorants et 4 stagiaires).
-Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
+Une partie des membres de l'équipe AMAC travaille sur le projet DREAM (4 chercheurs, 2 post-doctorants, 3 doctorants et plusieurs stagiaires).
+% Seung Su, Léni et Jonathan : tracking d'objets et création de \textit{saliency map}.
 
-Par exemple, plusieurs personnes travaillent sur la perception interactive.
-L'idée principale de la discipline est que pour segmenter des éléments (en l'occurrence des objects manipulables) dans une scène quelconque on ne peut pas se baser sur un a priori.
-Pour compenser cela, l'on va interagir avec l'environnement afin d'acquérir cette information.
-Le but d'un babillage est donc de produire une base de données.
-Une partie consiste à segmenter ce qui bouge et une autre doit pouvoir segmenter chaque objet.
-La segmentation de Leni me permet d'initialiser des hypothèses d'objets (ensemble de supervoxels) avec lesquels le robot interagit afin de valider ou non l'appartenance des supervoxels à un unique objet.
-La base de données qui est construite contient pour chaque objet les exemples de supervoxels qui lui ont été attribué.
+% Léni et Jonathan
+Par exemple, plusieurs personnes travaillent sur la perception interactive et le tracking d'objets.
+L'idée principale de ce sujet de recherche est que pour segmenter des éléments (en l'occurrence des objects manipulables) dans une scène quelconque, il n'est pas possible de se baser sur à priori.
+Pour compenser cela, le robot va interagir avec l'environnement afin d'acquérir de l'information.
+% Le but d'un babillage est donc de produire une base de données.
+Une étape consiste à segmenter ce qui bouge au moment de l'interaction du robot sur les objets, tandi qu'une autre étape vise à segmenter chaque objet.
+La segmentation permet d'initialiser des hypothèses d'objets (ensemble de supervoxels) avec lesquels le robot interagit afin de valider ou non l'appartenance des supervoxels à un unique objet.
+% La base de données qui est construite contient pour chaque objet les exemples de supervoxels qui lui ont été attribué.
+Ce babillage est orienté objet, c'est-ààdire qu'il consiste à récupérer des données à propos de chaque objet ainsi qu'à produire une segmentation d'objets.
 
-Babillage orienté objet. Il consiste à récupérer des données à propos de chaque objet et vise à produire une segmentation d'objets.
+% Lenni : Saliciency map babbling. Segementation à partir d'une scène.
+% Peut bouger / ne peut pas bouger avec son effecteur.
+%  Classificateur GMM (split and merge). Visual features (histogramme de couleur dans différents réferentiels, forme, vecteurs normaux...).
 
-Carlos : Apprentissage d'affordance
-Pierre : reconnaissance de formes ?
+% Carlos : Apprentissage d'affordance
+% Pierre : reconnaissance de formes ?
 
-Seung Su : QD Search, lancer de balle. Utilisation de QD Search : plus riche et divers mouvement de lancer, mouvement de haute qualité (minimisation d'énergie).
-Comportement = f(genotype)
+% Seungsu : QD Search, lancer de balle. Utilisation de QD Search : plus riche et divers mouvement de lancer, mouvement de haute qualité (minimisation d'énergie).
+% Comportement = f(genotype)
+D'autres travaux se concentrent sur le lancer de balle dans un seau effectué par un robot.
+Pour cela, des algorithmes de Quality Diversity Search sont employés.
+Ces algorithmes permettent des mouvements de lancer plus riches, plus divers et de plus haute qualité en minimisant l'énergie nécessaire au lancer.
 
-Lise : DynaQ, résoudre des tâches de navigation, replay (forward, backward) + Q-learning
-
-Lenni : Saliciency map babbling. Segementation à partir d'une scène.
-Peut bouger / ne peut pas bouger avec son effecteur.
- Classificateur GMM (split and merge). Visual features (histogramme de couleur dans différents réferentiels, forme, vecteurs normaux...).
-
-Un autre sujet se focalise sur l'étude du chant de chez le diamant mandarin.
+% Paul
+Un autre sujet se focalise sur l'étude du chant chez le diamant mandarin.
 Cet oiseau a la particularité de pouvoir apprendre le chant de son tuteur.
 Il est par ailleurs communément employé en tant que modèle de l'acquisition de la parole.
 Plus particulièrement, ce sujet traite de l'impact du sommeil sur l'apprentissage du chant.
 Chant unique, trajectoire d'apprentissage, qualité.
 Les résultats préliminaires ont montré que l'on pouvait observer une baisse de performance durant le sommeil, à court terme donc, mais qu'il y avait en revanche une  augmentation de la performance en toute fin d'apprentissage.
 
-
-
-Détails du projet Dream.
-Détails des différents objectifs.
-Description des différentes waves.
-
+% Lise
+Enfin, d'autres travaux sont effectuées sur les replays (forward et backward) et se basent sur l'algorithme Dyna-Q et sur l'apprentissage par renforcement (notamment le Q-learning) pour résoudre des tâches de navigation.
 
 
 \section{\'Etat de l'art}
@@ -297,7 +310,7 @@ Description des différentes waves.
 
 
 
-\subsection{Affordances}
+\subsection{Affordances - TODO}
 
 L'apprentissage des affordances est une étape cruciale dans l'approche de la robotique développementale.
 
@@ -312,14 +325,14 @@ Cette définition établit une relation forte entre un objet, une action et l'ef
 
 Ce concept permet donc d'identifier les conséquences d'une action, afin de les enregistrer et de les réutiliser par la suite.
 
-Dans \cite{Fitzpatrick2003}, Fitzpatrick et al. proposent une méthode permettant à un robot d'apprendre des affordances. Celle-ci consiste à permettre au robot d'effectuer des actions sur un objet et d'en observer le résultat.
+Dans \cite{Fitzpatrick2003}, Fitzpatrick et al. proposent une méthode permettant à un robot d'apprendre des affordances.
+Celle-ci consiste à permettre au robot d'effectuer des actions sur un objet et d'en observer le résultat.
 Ce concept a influencé toutes sortes de domaines, de la robotique à l'interaction Homme-Machine en passant par le design.
 
 \begin{figure}
 % \begin{wrapfigure}{r}{0.5\textwidth}
   \centering
-  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,
-                  thick,main node/.style={circle,draw,minimum size=17mm,font=\Medium\bfseries}]
+  \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.5cm,thick,main node/.style={circle,draw,minimum size=17mm,font=\Medium\bfseries}]
 
     \node[main node] (1) {Actions};
     \node[main node] (2) [below left of=1] {Objets};
@@ -386,9 +399,10 @@ Affordances nécessitent un certain nombre d'actions prédéfinies élémentaire
 
 
 
-\subsection{Boostrapping}
+\subsection{Boostrapping - OK}
 
-Meltzoff et al. expliquent in \cite{EDP:EDP157} que les enfants ne savent pas à priori quelques mouvements musculaires permettent d'atteindre un état particulier. Les auteurs appellent ceci le babillage du corps, directement inspiré du babillage lorsque les enfants expérimentent des sons vocaux.
+Meltzoff et al. expliquent dans \cite{EDP:EDP157} que les enfants ne savent pas à priori quelques mouvements musculaires permettent d'atteindre un état particulier.
+Les auteurs appellent cela le babillage du corps, directement inspiré du babillage lorsque les enfants expérimentent des sons vocaux.
 Ils expliquent que les enfants font des mouvements répétés, comme dans un jeu.
 Finalement, après un certain temps et de répétitions, les enfants apprennent la relation entre le mouvemements qu'ils effectuent et leurs effets.
 Ce concept a été réutilisé dans la robotique développementale.
@@ -396,80 +410,69 @@ En effet, pour un robot, apprendre des affordances nécessite d'intéragir avec 
 
 
 
-\subsubsection{Babillage sensorimoteur}
+\subsubsection{Babillage sensorimoteur - OK}
 
 Le babillage sensorimoteur constitue une première heuristique.
-Au sein de ce concept peuvent coexister différentes façon de réaliser ce babillage. Une première approche naïve consiste à utiliser des mouvements aléatoires.
-Cette approche est la plus simple à implémenter mais elle peut générer un nombre important de mouvements qui ne produisent pas de contact avec les objets.
+Il existe de multiples façons de réaliser ce babillage.
+Une première approche, qualifiée de naïve, consiste à utiliser des mouvements aléatoires.
+Cette approche est la plus simple à implémenter mais elle présente un défaut majeur : elle peut générer un nombre important de mouvements qui ne produisent pas de contact avec les objets.
 
-Une seconde approche est présentée dans dans \cite{Maestre2015} dans lequel Maestre et al. décrivent l'utilisation de Novelty Search, une algorithme évolutionnaire, afin de générer des trajectoires visant à maximiser l'exploration de l'environment.
-Les résultats montrent que les trajectoires permettant de toucher les objets sont davantage privilégiées au fur et à mesure des générations.
+Une seconde approche est présentée par Maestre et al. dans \cite{Maestre2015} où ils décrivent l'utilisation de l'algorithme évolutionnaire Novelty Search.
+Cet algorithme permet de générer des trajectoires permettant de maximiser l'exploration de l'environnement.
+Les résultats de cet article montrent que les trajectoires permettant de toucher les objets sont de plus en plus privilégiées au fur et à mesure des générations.
 
 
 
 
-\subsubsection{Motivations}
+\subsubsection{Motivations - OK}
 
-Une troisième approche réside dans les motivations intrinsèques.
-Ce concept a été décrit par Ryan et Deci, puis par Hull et plus tard formalisé en modèles computationnels par Oudeyer et Kaplan dans \cite{10.3389/neuro.12.006.2007}.
-Les motivations intrinsèques permettent d'explorer progressivement l'environnement en favorisant une spécialisation progressive des modules.
-La curiosité est davantage favorisée au profit de la recherche de la performance.
-Ce concept est utilisé en robotique et spécifiquement en robotique développementale.
+Une seconde heuristique réside dans les motivations intrinsèques.
+Ce concept a été décrit par Ryan et Deci dans \cite{Ryan2000}, puis par Hull et plus tard formalisé en modèles computationnels par Oudeyer et Kaplan dans \cite{10.3389/neuro.12.006.2007}.
+Les motivations intrinsèques permettent d'explorer progressivement l'environnement en favorisant une spécialisation progressive des différents composants.
+Dans cette optique, le concept de curiosité est davantage favorisée au profit de la recherche de la performance.
+Cette heuristique est utilisé en robotique et spécifiquement en robotique développementale.
 
-TODO : Définition de motivations intrinsèques, extrinsèques, internes et externes. Equivalent à la Curiosité. 
 
 \subsubsubsection{Motivations internes et externes}
 
-La récompense dans le cadre d'une motivation correspond à la valeur numérique que le système doit maximiser.
+Dans le cadre d'une motivation, la récompense correspond à la valeur numérique que le système doit maximiser.
 Lorsque la récompense provient de l'extérieur du système, il est question de motivation externe.
 En revanche, si la valeur à maximiser est calculée de façon interne, alors il s'agit de motivation interne.
-
 
 \subsubsubsection{Motivations intrinsèques et extrinsèques}
 
 Ryan et Deci definissent les motivations intrinsèques comme des activités amusantes ou comprenant du défi.
-Par ailleurs, ils définissent les motivations extrinsèques par des activités réalisées pour atteindre un résultat.
+D'autre part, ils définissent les motivations extrinsèques par des activités réalisées pour atteindre un résultat.
 
-Pour Oudeyer et al., les notions de 'fun', 'défi' ou de 'nouveauté' n'ont pas de définitions claires et explicites dans le domaine de l'informatique.
+Pour Oudeyer et al., les notions de 'amusant', 'défi' ou de 'nouveauté' n'ont pas de définitions claires et explicites dans le domaine de l'informatique.
 Ces définitions sont vagues et peuvent être interprétées de différentes façons.
 Par ailleurs, le concept de résultat est ambigü.
 
-Les motivations intrinsèques et extrinsèques ne sont pas exclusives. En effet, une même tâche peut concilier ces deux types de motivations.
-Il existe deux modèles de motivatins intrinsèques
-Oudeyer et al. définissent deux modéles de motivations intrinsèques.
-Le premier est basé sur les connaissances. Il vise à mesurer dls dissonances entre la situation expérimentée par le robot et les connaissance et atttente que le robot a de ces situations.
+Pour Oudeyer et al. , les motivations intrinsèques et extrinsèques ne sont pas exclusives : une même tâche peut concilier ces deux types de motivations.
+Ils définissent par ailleurs deux modèles de motivations intrinsèques.
+Le premier est basé sur les connaissances.
+Il vise à mesurer les dissonances entre la situation expérimentée par le robot et les connaissance et attente que le robot a de ces situations.
 Le deuxième est basé sur les compétences. Il mesure les compétences qu'un agent a pour réaliser des résultats ou objectits fixé par lui-même.
 
 
 
 
+\subsection{Réseaux bayésiens - OK}
 
-Context: The ability to perform in an open-ended environment and to build on previously acquired knowledge to quickly adapt to changes and unknown situations is key to building
-multi-purpose assistive robots which can be helpful in a wide range of realistic situations.
-
-%% Cognitive Developmental
-Cognitive Developmental robotics is a promising approach to create robots with higher cognitive functions as shown in \cite{Asada2009} by Asada et al.
-
-
-
-
-\subsection{Réseaux bayésiens}
-
-Une fois que le babillage sensorimoteur a été réalisé, les relations entre les objets, actions et effets nécessitent d'être modélisées.
+Une fois que le babillage sensorimoteur a été réalisé, les relations entre objets, actions et effets nécessitent d'être modélisées.
 Les réseaux bayésiens constituent une méthode efficace pour réaliser cela. 
 Les réseaux bayésiens sont des modèles graphiques probabilistes representés sous la forme de graphe dirigés et acycliques.
-Les noeuds représentes les variables aléatoires et les liens représentent l'influence entre les variables.
-Leurs intérêt réside dans la possibilité offerte de combiner les connaissances des experts, contenues dans le graphe, et l'expérience contenue dans les données.
-Dans \cite{Montesano2008}, Montesano et al. présentent un modèle de réseau bayésien dans lequel les dépendances entre objets, actions et effets sont modélisés.
-Ce modèle de réseau bayésien permet d'apprendre des affordances concernant des objets.
-Il permet également de prédire des actions, caractéristiques d'objets ou effets.
-Une des motivations de Montesano : apprentissage par imitation.
+Les noeuds représentent les variables aléatoires et les liens représentent l'influence entre les variables.
+Leurs intérêt réside dans la possibilité offerte de combiner les connaissances des experts, contenues dans le graphe, et l'expérience, contenue dans les données.
 
-En effet, ce type de modèle est capable de réaliser des inférences et sa représentation des affordances comme dépendences probabilistes permet d'analyser et de comprendre les résultats d'apprentissage.
+Dans \cite{Montesano2008}, Montesano et al. présentent un modèle de réseau bayésien dans lequel les dépendances entre objets, actions et effets sont modélisés.
+Une des motivations des auteurs résident dans le fait de pouvoir permettre à un robot d'apprendre des actions par imitation.
+Ce modèle de réseau bayésien permet donc d'apprendre des affordances concernant des objets mais il permet également de prédire des actions en fonction des effets obtenus.
+En effet, ce type de modèle est capable de réaliser des inférences et sa représentation des affordances comme dépendances probabilistes permet d'analyser et de comprendre les résultats d'apprentissage.
 
 La planification de tâches est une autre utilisation possible des réseaux bayésiens modélisant des affordances.
-Gonçalves et al. présentent un framework utilisant les réseaux bayésiens \cite{Goncalves2014} pour planifier une tâche en fonction des effets attendus.
-Le robot considéré dans l'article dispose d'outils et d'actions dans son répertoire.
+Gonçalves et al. présentent un autre framework utilisant les réseaux bayésiens \cite{Goncalves2014} pour planifier une tâche en fonction des effets attendus.
+Le robot considéré dans l'article dispose de différents objets utilisables en tant qu'outils et différentes actions dans son répertoire.
 Il peut raisonner à partir de ceux-ci pour atteindre les effets désirés sur un objet grâce à des objets devant lui dont certains lui sont peut-être inconnus.
 Par exemple, à partir d'un ensemble d'objets de type \textit{outil} disponibles ainsi que d'un effet désiré (amener plus près) sur un objet, un robot disposant d'un réseau bayésien de ce type peut raisonner pour trouver quel outil et quelle action disponibles sont les plus efficaces pour réaliser l'effet désiré.
 
@@ -494,12 +497,13 @@ Dans cet article, un robot apprend les caractéristiques visuelles d'objets et d
 De cette façon, ils montrent que le robot est capable de réaliser une action spécifique ou d'obtenir un résultat désiré.
 L'utilisation des descripteurs visuels permet au robot de généraliser avec des objets inconnus.
 
-D'autre part, Gonçalves et al. \cite{Goncalves2014} propose un modèle probabiliste capable d'apprendre les interactions mutuelles entre objets dans des tâches complexes qui implique une manipulation, où l'un des objets est un outil une fois saisi et utilisé tandis que l'autre est l'objet sur lequel l'outil agit . Avec ce modèle, le robot considéré est capable d'apprendre des relations porteuses de sens entre actions, outils, d'autres objets et les effets associés, ainsi que d'exploiter la connaissance acquise pour faire des prédictions et prendre des décisions optimales.
+D'autre part, Gonçalves et al. \cite{Goncalves2014} propose un modèle probabiliste capable d'apprendre les interactions mutuelles entre objets dans des tâches complexes qui implique une manipulation, où l'un des objets est un outil une fois saisi et utilisé tandis que l'autre est l'objet sur lequel l'outil agit .
+Avec ce modèle, le robot considéré est capable d'apprendre des relations porteuses de sens entre actions, outils, d'autres objets et les effets associés, ainsi que d'exploiter la connaissance acquise pour faire des prédictions et prendre des décisions optimales.
 
 
 
 
-\subsection{Algorithmes de clusterisation}
+\subsection{Algorithmes de clusterisation - OK}
 
 \cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} \cite{Tan2005} et \cite{Sajana2016}
 Le clustering ou partitionnement de données fait partie du domaine de l'analyse de données.
@@ -507,29 +511,33 @@ Cette technique a été développée pour traiter des jeux de données trop mass
 L'idée est de grouper un ensemble d'objets de telle manière à ce que les objets présents au sein d'un même cluster soit le plus similaire possible tandis que les différences entre les différents clusters soient les plus grandes possibles afin d'obtenir une séparation nette entre clusters.
 Le clustering est considéré comme la plus importante question en apprentissage non supervisé, c'est-à-dire qu'il n'existe pas de connaissance préalable sur la classification des objets \cite{Xu2015}.
 
-Différentes notions de mesure de distance (dissimilarité) existent :
+Les variables utilisées dans le clustering peuvent être des variables discrètes, binaires, nominales ou ordinales.
+
+Différentes notions de mesure de distance (dissimilarité) existent. Parmi celles-ci, il est possible de citer :
 
 \begin{enumerate}
   \item Distance de Minkowski
   \item Distance euclidienne
   \item Distance cosine
+  \item Distance de Mahalanobis
+  \item Distance moyenne
 \end{enumerate}
 
-Différentes typologies de clustering existent : 
+La qualité d'un clustering dépend donc de la mesure de distance utilisée.
+
+Différentes typologies de clustering existent. Voici quelques exemples : 
 
 \begin{enumerate}
-  \item Partition : 
-  \item Connectivité (hiérarchique) : for example, hierarchical clustering builds models based on distance connectivity.
-  \item Centroid : for example, the k-means algorithm represents each cluster by a single mean vector.
-  \item Distribution : clusters are modeled using statistical distributions, such as multivariate normal distributions used by the expectation-maximization algorithm.
-  \item Densité : un cluster est une région dense d'objets entourée d'une région de faible densité. Les éléments présents dans les zones de faible densité sont considérés comme du bruit. (H)DBSCAN, OPTICS.
-  \item Groupe : some algorithms do not provide a refined model for their results and just provide the grouping information.
-  \item Graphe : a clique, that is, a subset of nodes in a graph such that every two nodes in the subset are connected by an edge can be considered as a prototypical form of cluster. Relaxations of the complete connectivity requirement (a fraction of the edges can be missing) are known as quasi-cliques, as in the HCS clustering algorithm.
+  \item Partition : initialement, les éléments sont considérés comme faisant partie d'un seul cluster. Puis, les éléments initiaux sont groupés de façon itérative en différentes partitions dont le nombre est donné en paramètre en entrée ;
+  \item Connectivité (hiérarchique) : ce type de clustering partitionne les éléments dans un arbre où chaque noeud de l'arbre représente un cluster ;
+  \item Distribution : les clusters sont modélisés en utilisant une distribution statistique ;
+  \item Densité : un cluster est une région dense d'objets entourée d'une région de faible densité. Les éléments présents dans les zones de faible densité sont considérés comme du bruit ;
+  \item Grille : les données sont paritionnées en un nombre de cellules formant une structure de grille ;
 \end{enumerate}
 
 
 
-\subsection{Algorithmes génétiques}
+\subsection{Algorithmes génétiques - OK}
  
 L'évolution biologique peut être considérée comme un mécanisme d'optimisation qui vise à permettre aux meilleurs individus de survivre dans leur environnement.
 Afin de résoudre des problèmes d'optimisation difficiles, le concept d'algorithme génétique a été proposé par John Holland et son équipe \cite{Holland:1975} dans les années 1970. 
@@ -543,7 +551,6 @@ La mutation vise à la modification aléatoire d’une partie de l’individu.
 Enfin, chaque individu est évalué à l'aide d'une fonction coût et les individus les plus performants sont sélectionnés parmi la population courante d'individus.
 Ces cycles d'évolutions sont répétés tant qu'une solution correcte n'a pas été trouvée.
 Un individu contient un génotype qui est encodé sous la forme de flottants, de chaîne de caractères ou d'entiers.
-
 
 Les algorithmes génétiques multi-objectifs sont une variante des algorithmes génétiques classiques.
 Ils sont utilisés lorsque le problème posé comporte plusieurs objectifs à optimiser.
@@ -574,20 +581,8 @@ Ces algorithmes génétiques ont des domaines d'applications très variés : opt
 
 \section{Notre travail}
 
-% \epigraph{Artificial intelligence is the science of making machines do things that would require intelligence if done by men.}{\textit{Marvin Minsky}}
 
-
-
-
-\subsection{Environnement}
- 
-% \begin{wrapfigure}{r}{0.45\textwidth}
-%   \begin{center}
-%     \includegraphics[angle=-90, width=0.4\textwidth]{figures/baxter}
-%   \end{center}
-%   \caption{Le robot Baxter de Rethink Robotics utilisé à l'ISIR.}
-%   \label{fig:baxter}
-% \end{wrapfigure}
+\subsection{Environnement - OK}
 
 \begin{figure}
   \begin{center}
@@ -598,6 +593,14 @@ Ces algorithmes génétiques ont des domaines d'applications très variés : opt
 \end{figure}
 
 \lettrine{A}{fin} de développer des algorithmes d'intelligence artificielle dans le domaine de la robotique, il est nécessaire de disposer d'une multitude d'outils tels qu'un simulateur et un framework pour communiquer avec les différents composants, en plus de disposer, tout naturellement, d'un robot.
+
+% \begin{wrapfigure}{r}{0.45\textwidth}
+%   \begin{center}
+%     \includegraphics[angle=-90, width=0.4\textwidth]{figures/baxter}
+%   \end{center}
+%   \caption{Le robot Baxter de Rethink Robotics utilisé à l'ISIR.}
+%   \label{fig:baxter}
+% \end{wrapfigure}
 
 Dans le cadre du projet DREAM, l'ISIR bénéficie du robot Baxter\footnote{http://www.rethinkrobotics.com/baxter/tech-specs/} (voir figure \ref{fig:baxter}).
 C'est un robot développé par Rethink Robotic et utilisé à la fois à des fin industrielles et de recherche.
@@ -616,15 +619,6 @@ Il comporte différents outils, bibliothèques de fonctions et permet l'interact
 
 % \begin{figure}
 % 	\centering
-% 	\includegraphics[angle=-90,width=.5\textwidth]{figures/baxter}
-% 	\label{fig:baxter}
-% 	\caption{Le robot Baxter de Rethink Robotics utilisé à l'ISIR.}
-% \end{figure}
-
-
-
-% \begin{figure}
-% 	\centering
 % 	\includegraphics[width=\textwidth]{figures/gazebo}
 % 	\label{fig:gazebo}
 % 	\caption{Gazebo simulator}
@@ -636,24 +630,16 @@ Il comporte différents outils, bibliothèques de fonctions et permet l'interact
 \subsection{Discrétisation adaptative}
 
 
-
-\subsubsection{Travaux précédents}
+\subsubsection{Travaux relatifs - OK}
 
 Notre travail se base en partie sur les travaux existants d'un doctorant, intégré également dans le projet DREAM, et portant sur la découverte des affordances.
-Dans ces travaux, le nombre d'actions disponibles et connues par le robot est arbitrairement paramétré (par exemple 4 ou 8) (\textbf{Gauche}, \textbf{Droite}, \textbf{Haut}, \textbf{Bas}). Voir figure~\ref{fig:trajectories}.
-
-% \begin{figure}
-% 	\centering
-% 	\includegraphics[width=0.5\textwidth]{figures/trajectories}
-% 	\caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chqaue cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
-% 	\label{fig:trajectories}
-% \end{figure}
+Dans ces travaux, le nombre d'actions disponibles et connues par le robot est arbitrairement paramétré (par exemple 4 : \textbf{Gauche}, \textbf{Droite}, \textbf{Haut}, \textbf{Bas}). La figure~\ref{fig:trajectories} montre ces 4 effets réalisables par le robot en simulation.
 
 % \begin{wrapfigure}{r}{0.5\textwidth}
 %   \begin{center}
 %     \includegraphics[width=0.48\textwidth]{figures/trajectories}
 %   \end{center}
-%   \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chqaue cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
+%   \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chaque cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
 %   \label{fig:trajectories}
 % \end{wrapfigure}
 
@@ -661,18 +647,15 @@ Dans ces travaux, le nombre d'actions disponibles et connues par le robot est ar
   \begin{center}
     \includegraphics[width=0.8\textwidth]{figures/trajectories}
   \end{center}
-  \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chqaue cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
+  \caption{Différentes trajectoires réalisées par le robot (représenté par le volume gris). La position initiale de l'objet est représentée par le cube gris au milieu. Chaque cube coloré correspond au mouvement de la même couleur (par exemple, le cube rouge est la position finale du cube gris après avoir poussé par l'effecteur du robot suivant la trajectoire rouge).}
   \label{fig:trajectories}
 \end{figure}
 
-En raison de la nécessité de généraliser dans un contexte où le nombre d'actions est potentiellement différent, il n'est pas possible de laisser une telle valeur arbitraire.
-Pour pallier à ce problème, la première étape de notre stage a porté sur l'accomplissement d'une discrétisation adaptative de l'environnement.
+En raison de la nécessité de généraliser dans un contexte où le nombre d'actions est potentiellement différent et surtout inconnu, il n'est pas possible de laisser une telle valeur arbitraire.
+Pour pallier à ce problème, il est nécessaire de procéder à une discrétisation adaptative de l'environnement, ce qui constitue le sujet principal de notre stage.
 L'idée générale est de laisser le robot découvrir lui-même les différentes actions réalisables sans en spécifier le nombre.
-Pour arriver à cela, la méthode du clustering est utilisé afin de distinguer les différentes actions.
+Pour arriver à cet objectif, la méthode choisie lors de la définition du sujet est le clustering qui doit permettre de distinguer les différentes actions.
 
-% X-means algorithm\cite{Pelleg:2000:XEK:645529.657808}, based on k-means, was used at the beginning. Basically, X-means is a k-means algorithm's generalization, which finds itself the best value for $k$.
-
-% Dans Ugur, l'algorithme de clusterisation \textit{X-means} est utilisé pour clusteriser les effets. Mais pas paramètrable. Cf long abstract (v1, v2, v3).
 
 
 
@@ -680,17 +663,17 @@ Pour arriver à cela, la méthode du clustering est utilisé afin de distinguer 
 
 En nous basant sur la littérature existante (\cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} et \cite{Sajana2016}), nous avons réalisé en début de stage une synthèse des algorithmes de clustering les plus communément utilisés.
 La production scientifique est riche et il existe aujourd'hui plus d'une centaine d'algorithmes de clustering, groupés en différentes catégories (voir section 4.6).
-Afin de filtrer et sélectionner les algorithmes les plus pertinents pour le problème posé dans notre stage, nous avons choisi des critères non arbitraires.
-En se référant à la généralisation mentionnée ci-dessus, un premier critère concerne la nécessité de ne pas fournir le nombre attendu de clusters en paramètre.
-En effet, le système doit pouvoir de trouver par lui-même un nombre d'actions permettant une clusterisation efficace.
+Afin de filtrer et sélectionner les algorithmes les plus pertinents pour le problème posé dans notre stage, nous avons choisi plusieurs critères non arbitraires.
+En se référant à la généralisation indispensable mentionnée ci-dessus, un premier critère concerne la nécessité de ne pas fournir le nombre attendu de clusters en paramètre.
+En effet, le système doit pouvoir de trouver de façon autonome un nombre d'actions permettant une clusterisation efficace.
 Un second critère concerne la possibilité de travailler avec de nombreuses dimensions.
 Au départ, seules 2 dimensions sont prises en compte, les coordonnées $x$ et $y$.
-Cependant, une évolution envisagée dès le départ concerne l'ajout de nouvelles dimensions pour la clusterisation telles que les 3 dimensions concernant la rotation de l'objet. 
+Cependant, une évolution envisagée dès le départ concerne l'ajout de nouvelles dimensions pour la clusterisation telles que les 3 dimensions concernant la rotation de l'objet.
 Le troisième et dernier critère concerne la disponibilité d'une implémentation en Python ou C{}\verb!++!.
 En effet, l'objectif du stage n'était pas d'implémenter un algorithme en particulier mais de réutiliser facilement des implémentations déjà existantes.
 Les algorithmes ne satisfaisant pas à ces critères ont été rejetés.
 
-Sur la centaine d'algorithmes de clustering existants, 7 ont été retenus lors de cette première phase : X-means\textsuperscript{1}, Affinity Propagation\textsuperscript{1}, DBSCAN\textsuperscript{2}, HDBSCAN\textsuperscript{2}, OPTICS\textsuperscript{2}, Mean-Shift\textsuperscript{2} et Level Set Tree. (1) correspondent à des algorithmes de partitionnement et (2) correspondent à des algorithmes basés sur la densité.
+Sur la centaine d'algorithmes de clustering existants, sept ont été retenus lors de cette première phase : X-means\textsuperscript{1}, Affinity Propagation\textsuperscript{1}, DBSCAN\textsuperscript{2}, HDBSCAN\textsuperscript{2}, OPTICS\textsuperscript{2}, Mean-Shift\textsuperscript{2} et Level Set Tree. (1) correspondent à des algorithmes de partitionnement et (2) correspondent à des algorithmes basés sur la densité.
 
 % Based on \cite{Xu2015}, \cite{Andreopoulos2009}, \cite{Fahad2014} and \cite{Sajana2016}, we reviewed the most common algorithms used for clustering, grouped in categories (see annex for details). Non-arbitrary criteria were required for filtering algorithms. According to the generalization mentioned above, a first criterion concerns the requirement to pass the number of clusters as input parameter. Indeed, as the system should be able to find itself the correct number of actions. A second criterion concern the possibility to work with high dimensionality and a third one is the implemenation's availabily in Python or C++. Algorithms that did not suit to those parameters were discarded.
 
@@ -727,10 +710,10 @@ La mise en place est rapide dans la mesure où il ne reste qu'à rédiger le cod
 
 % Un très grand nombre d'algorithmes de clustering existent et ont été trouvés dans l'étape précédente.
 % Sept d'entre eux ont été sélectionnés (principalement des algorithmes de partitionnemente et densité).
-Nous avions également besoin d'une méthode pour valider les paramètres trouvés.
-Cet algorithme est utilisé par la fonction fitness au sein de l'algorithme génétique.
 La méthode proposée consiste en un algorithme itératif au sein duquel un algorithme de clustering est réglé afin de satisfaire à 3 objectifs : \circled{1} le nombre de mouvements pour atteindre la cible, devant être minimisé pour faire en sorte que le robot soit le plus rapide possible, \circled{2} le nombre de clusters, devant être minimisé pour simplifier le calcul et \circled{3} la distance finale, à minimiser pour la précision du contrôle.
 Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionné l'algorithme génétique NSGA-II\cite{Deb:2002:FEM:2221359.2221582} pour remplir cette tâche.
+Cet algorithme est utilisé par la fonction coût au sein de l'algorithme génétique :
+
 
 % \begin{wrapfigure}{L}{0.5\textwidth}
     % \begin{minipage}{0.5\textwidth}
@@ -761,7 +744,7 @@ Dans la mesure où plusieurs objectifs sont à minimiser, nous avons sélectionn
 
 La validation expérimentale de notre méthode a été effectuée en utilisant l'algorithme \textit{Mean Shift}.
 En effet, au travers de différents tests sur des jeux de données et des paramètres différents, cet algorithme se classait parmi les meilleurs.
-Cet algorithme a révélé empiriquement par la suite la génération de clusters plus divers que \textit{X-means} lorsque ses paramètres ont été changés.
+Cet algorithme a révélé empiriquement par la suite la génération de clusters plus divers que \mbox{\textit{X-means}} lorsque ses paramètres ont été changés.
 Le génotype est constitué par la valeur d'un seul paramètre décimal associé à cet algorithme.
 La population initiale est constituée de 32 individus, évalués durant 25 générations. Les taux de croisement et de mutation pour NSGA-II sont respectivement de 0.8 et 0.1. Nous avons utilisé un jeu de données généré par un babillage orienté-objet simulé (voir ).
 Un point final a été aléatoirement généré au début de l'expérience. La fitness a été évaluée 30 fois pour chaque individu, les valeurs moyennes des objectifs étant ensuite reportées.
@@ -782,9 +765,10 @@ NSGA-II étant un algorithme multi-objectif, plusieurs meilleures solutions peuv
 La figure \ref{fig:pareto_front} montre la valeur du paramètre (de l'algorithme de clustering) correspondant aux individus dominants.
 Différentes valeurs peuvent être relevées, par exemple 0.05, 0.12 ou 0.31.
 
-\`A partir de cet ensemble de meilleures valeurs de paramètres, nous avons généré (Figure \ref{fig:results}) deux séries de graphiques.
-Les deux ensembles de clusters optimisent différents objectifs : vitesse et précision pour celui de gauche contre coût computationnel pour celui de droite. La colonne de gauche contient davantage de clusters et permet un contrôle rapide et précis.
-\`A l'inverse, l'autre solution repose sur un nombre moins important de clusters.
+À partir de cet ensemble de meilleures valeurs de paramètres, nous avons généré (voir figure \ref{fig:results}) deux séries de graphiques.
+Les deux ensembles de clusters optimisent différents objectifs : vitesse et précision pour celui de gauche contre coût computationnel pour celui de droite.
+La colonne de gauche contient davantage de clusters et permet un contrôle rapide et précis.
+À l'inverse, l'autre solution repose sur un nombre moins important de clusters.
 
 % \begin{figure}[!tbp]
 %   \centering
@@ -818,9 +802,9 @@ Les deux ensembles de clusters optimisent différents objectifs : vitesse et pr�
 \end{figure}
 
 
-Clusterisation based on Ugur's paper: 40 features. Compare Ugur's work with us.\\
+% Clusterisation based on Ugur's paper: 40 features. Compare Ugur's work with us.\\
 
-Cette première partie de notre stage a fait l'objet d'une soumission d'un abstract au workshop \textit{Developmental learning and representation building in human-robots and ambient intelligence systems} de la conférence ECAL2017\footnote{https://project.inria.fr/ecal2017/} qui se tient à Lyon en septembre 2017.
+Cette première partie de notre stage, comprenant la proposition d'un algorithme de clusterisation d'effets, a fait l'objet d'une soumission d'un abstract au workshop \textit{Developmental learning and representation building in human-robots and ambient intelligence systems} de la conférence ECAL2017\footnote{https://project.inria.fr/ecal2017/} qui se tiendra à Lyon en septembre 2017.
 
 
 
@@ -828,6 +812,7 @@ Cette première partie de notre stage a fait l'objet d'une soumission d'un abstr
 
 
 \subsection{Expérience de validation - OK}
+
 La seconde partie de notre stage a consisté à mener une expérience pour valider l'algorithme de clusterisation d'effets défini dans la première partie de ce mémoire.
 Dans un premier temps, l'expérimentation s'est déroulée en simulation.
 Une fois cette simulation validée (non encore réalisé à ce jour), il est prévu d'utiliser le robot afin de tester notre algorithme dans un environnemnt réel.
@@ -837,6 +822,7 @@ La figure \ref{fig:setup} représente la mise en place initiale de l'expériment
 
 
 \subsubsection{Babillage - OK}
+
 Durant la première étape de cette expérimentation, un objet (par exemple un cube) est placé sur la table à une position initiale.
 Un babillage sur l'objet est réalisé afin d'obtenir des jeux de données contenant les différents effets découverts à traiter.
 Ce babillage est effectué à l'aide de l'algorithme \textit{NovEB} (Novelty-driven Evolutionary Babbling) décrit par Maestre et al. \cite{Maestre2015}.
@@ -845,7 +831,7 @@ Il est capable de générer plusieurs milliers d'interactions différentes avec 
 Pour cela, les trajectoires sont générées en se basant sur la maximisation d'un critère de nouveauté.
 Ce critère est la distance moyenne entre la trajectoire courante et ses k plus proches voisins dans la population courante et dans une archive de trajectoires précédemment explorées.
 Les trajectoires générées sont celles qui augmentent le plus de nouveauté.
-L'algorithme NovEB génère un dataset qui peut être traité ensuite par des algorithmes de machine learning.
+L'algorithme NovEB génère un dataset qui peut être traité ensuite par des algorithmes de Machine Learning.
 La figure \ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet considéré.
 
 % \begin{figure}[!tbp]
@@ -882,7 +868,8 @@ La figure \ref{fig:ns_traj} montre un exemple de trajectoire touchant l'objet co
 
 
 
-\subsubsection{Clusterisation d'effets}
+\subsubsection{Clusterisation d'effets - OK}
+
 La seconde étape de l'expérience de validation implique l'algorithme que nous avons présenté dans la première partie et vise à clusteriser les effets présents dans les jeux de données.
 Il en résulte une variété de paramètres de l'algorithme de clusterisation considéré qui peuvent être exploités durant la troisième étape.
 Les meilleurs paramètres trouvés dans l'étape précédente sont utilisés pour pousser les différents objects vers la zone cible.
@@ -892,17 +879,10 @@ Dans notre expérience, une valeur du paramètre \textit{quantile} est sélectio
 
 
 
-\subsubsection{Poussée de l'objet}
-Enfin, dans un troisième temps, le robot tente de pousser l'objet présenté devant lui vers une zone cible (dont la position est variable), en utilisant les différents effets à sa disposition, trouvés lors de l'étape précédente.
-Cette dernière étape soulève plusieurs problèmes qu'il a fallu résoudre. 
+\subsubsection{Poussée de l'objet - OK}
 
-% Tout d'abord, concernant la position de l'effecteur.
-% Les effets générés lors du babillage sont effectués à partir de différentes faces de l'objet.
-% Ainsi, lorsque le robot tente de pousser l'objet vers la zone cible, en fonction de la position de cette zone à atteindre, les effets seront différents ainsi que les faces/points de contacts d'où initier les effets.
-% \`A chaque effet est associé un point de contact dans le repère de l'objet.
-% Cela nous a amené à récupérer les coordonnées du point de contact pour savoir d'où initier l'effet.
-% Ces coordonnées sont exprimées dans le repère lié à l'objet et sont corrélées à l'effet enregistré.
-% La figure \ref{fig:contact_position} présente ce cas particulier.
+Enfin, dans un troisième temps, l'objectif du robot est de pousser l'objet présenté devant lui vers une zone cible (dont la position est variable), en utilisant les différents effets à sa disposition trouvés lors de l'étape précédente.
+Cette dernière étape soulève plusieurs problèmes qu'il a fallu ou qu'il faut résoudre.
 
 % \begin{figure}[ht]
 %   \begin{center}
@@ -920,17 +900,22 @@ Cette dernière étape soulève plusieurs problèmes qu'il a fallu résoudre.
   \end{center}
 \end{figure}
 
-Le second problème provient du fait que les différents mouvements réalisés par le robot ne sont pas tous identiques.
+Le premier problème provient du fait que les différents mouvements réalisés par le robot ne sont pas tous identiques.
 Certains effectuent une poussée au milieu de la face considéréee tandis que d'autres vont toucher cette même face à des positions très variées, parfois même aux extrêmités de celle-ci.
 Un mouvement au centre de la face a pour effet de pousser de manière rectiligne l'objet tandis qu'un mouvement en dehors de ce centre peut provoquer une rotation de l'objet sur l'axe $z$ en plus d'une trajectoire rectiligne.
 Il convenait donc d'orienter l'effecteur pour qu'il se retrouve dans une configuration idéale, c'est-à-dire parallèle à la face considérée, avant tout mouvement.
 
-Le troisième problème a trait avec la tâche elle-même.
+Le second problème a trait avec la tâche elle-même.
 En effet, dans un second temps de l'expérimentation, l'objet doit être poussé dans une zone inacessible au bras du robot.
 Cela signifie que l'objectif visé n'est pas simplement de pousser  un objet jusqu'à une zone particulière, mais d'effectuer un geste avec une vélocité élevée afin de pousser fortement l'objet jusqu'à cette zone.
-Utilisation de Quality Diversity pour effectuer le babillage concernant la vélocité.
+L'utilisation de Quality Diversity doit pouvoir permettre d'effectuer un babillage relatif à la vélocité des lancers.
 
-\subsubsection{Résultats}
+
+
+
+
+\subsubsection{Résultats - OK}
+
 Les premiers résultats provenant de cette expérimentation en simulation montrent que le robot est capable de pousser un objet vers une zone particulière accessible par le robot en se basant sur la discrétisation d'effets.
 Afin de pousser l'objet dans la direction adéquate, le robot positionne son bras dans le sens opposé au déplacement.
 Le robot effectue ensuite un déplacement correspondant à l'effet choisi et continue jusqu'à ce que l'objet se trouve dans la zone souhaitée.
@@ -959,7 +944,7 @@ En effet, un cylindre a pour particularité de rouler sur une grande distance re
 Un babillage avec ces deux objets pourrait permettre au robot d'apprendre à repositionner les objets afin d'exposer leur face appropriée aux différentes actions (face courbe pour le cylindre et base pour le cône).
 
 L'algorithme décrit dans ce mémoire a été utilisé pour une expérience réalisée en collaboration avec UDC et ISIR en vue du de la réunion d'évaluation du projet qui se tient mi-septembre. 
-Cette expérience consiste à faire en sorte que le robot puisse atteindre différentes zones matérialisées par des zones RFID.
+Le but de cette expérience consiste à faire en sorte qu'un robot mobile puisse atteindre différentes zones matérialisées par des zones RFID.
 Pour cela, des technique de Reinforcement Learning ont été utilisées conjointement avec l'algorithme de clusterisation d'effets.
 Par ailleurs, cet algorithme peut être utilisé en amont du projet DREAM dans des travaux nécessitant une discrétisation de l'environnement.
 
@@ -967,18 +952,45 @@ Par ailleurs, cet algorithme peut être utilisé en amont du projet DREAM dans d
 
 
 
-\section{Conclusion}
+\section{Conclusion - OK}
 
-\lettrine{A}{près} l'introduction donnée durant mon semestre de cours à Lyon, ce stage de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale ainsi que le monde de la recherche.
+
+
+% Qu'avez vous tiré de votre stage ?
+\lettrine{A}{près} l'introduction donnée durant mon semestre de cours à Lyon, ce stage de Master 2 m'a permis de davantage découvrir le domaine de la robotique développementale 
 Ce domaine de recherche, à la croisée de la robotique, de l'informatique et des neurosciences est un domaine riche, en plus d'être fascinant et très intéressant.
 Les chercheurs s'emploient à créer des robots qui pourraient boostrap à partir d'une connaissance presque nulle de l'environnement.
 Le lien étroit entre neurosciences (et spécialement neurosciences cognitives) permet d'implémenter des modèles présent chez l'être humain.
-Par ailleurs, j'ai pu m'apercevoir que le domaine de la recherche est un domaine exigeant qui nécessite d'être ...
-
 Le sujet abordé dans ce stage pointe la difficulté que représente la conception d'un robot autonome et capable d'apprendre en permanence dans son environnement.
+Découvrir davantage le domaine de la robotique développementale.
+Ce stage de six mois m'a également permis de cotôyer concrètement le monde de la recherche.
+C'est un domaine exigeant qui nécessite d'être curieux et ouvert.
 
-In that paper, we have proposed an approach to allow a robot learn from its own experiments and exploit babbling data in order to identify sets of reachable effects that define actions relevant to a task-dependant context.
-In the future, we will extend that approach by using more clustering algorithms and parameters, and investigate its application to more complex and varied tasks.
+% Qu'avez-vous apporté à l'entreprise ?
+% Développé un algorithme de clusterisation d'effets utilisables par l'équipe et les partenaires du projet DREAM.
+Durant ce stage de six mois, nous avons proposé une approche qui permet à un robot d'apprendre depuis ses propres expériences et d'exploiter les données issues du babillage afin d'identifier des ensembles d'effets qui définissent des actions pertinentes pour un contexte dépendendant de la tâche à accomplir.
+Cet algorithme constitue un élément du projet DREAM qui pourra être utilisé par les différents partenaires et l'équipe AMAC.
+
+% Qu'avez-vous acquis ? (méthodes de travail, rigueur, organisation, compétences, connaissances...)
+Durant ce stage, j'ai développé un vaste ensemble de compétences nécessaires à la programmation de robots, notamment grâce à l'utilisation de frameworks et d'outils open source.
+Le thème de mon stage m'a également amené à acquérir des connaissances solides dans le domaine de l'apprentissage d'affordances, tant d'un point de vue des neurosciences que du point vue de la robotique.
+
+% Avez-vous atteint les objectifs que vous vous étiez fixés ? 
+% Estimez-vous que vous avez réussi vos missions dans les temps impartis ?
+L'avancement de mon stage, se terminant fin septembre, est conforme avec les jalons posés en début de stage.
+La partie théorique contenant l'algorithme de clusterisation d'effets est achevée tout comme la partie concernant l'expérimentation en simulation.
+Le mois restant sera consacrée à mise en place de l'expérimentation avec le robot réel et la constitution d'un benchmark en vue de la publication d'un nouvel article.
+
+% Dans l'absolu, souhaiteriez-vous travailler dans ce genre d'entreprise ?
+% Ce stage vous a-t-il apporté une orientation professionnelle plus précise ?
+% A-t-il confirmé ou infirmé vos choix ? A-t-il fait naître d'autres désirs ?
+Enfin, ce stage a confirmé mon choix de poursuivre en thèse après mon Master 2.
+La recherche m'attire parce qu'elle est riche de savoirs et en constante progression.
+Le domaine de la robotique développementale m'intéresse beaucoup parce qu'il est prometteur.
+Cependant, je discerne que je souhaiterai davantage travailler dans un domaine moins fondamental et empirique, et avec davantage de modèles théoriques mathématiques.
+
+
+
 
 % \section*{Annexe}
 
